@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://6jbuq8anh4ws"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfc7c"]
+size = Vector2(1016, 20)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(514, 498)
+shape = SubResource("RectangleShape2D_wfc7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D/CollisionShape2D"]
+position = Vector2(-374, -498)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")

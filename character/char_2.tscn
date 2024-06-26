@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3wj3eqyl2tbn"]
+
+[ext_resource type="Texture2D" uid="uid://dxv1503k604pq" path="res://char/PNG/Double/yellow_body_circle.png" id="2_36mkg"]
+
+[node name="char_2" type="Node2D"]
+scale = Vector2(0.375, 0.375)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_36mkg")

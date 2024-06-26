@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx25kyriqgaq5"]
+
+[ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_menus_template/base/scenes/Menus/MainMenu/MainMenu.tscn" id="1_4u7ax"]
+[ext_resource type="PackedScene" uid="uid://csb0mnpryqcdt" path="res://test/scenes/Menus/OptionsMenu/MasterOptionsMenuWithTabs.tscn" id="2_sjr0b"]
+[ext_resource type="PackedScene" uid="uid://deix4r2mrdoh8" path="res://test/scenes/Credits/Credits.tscn" id="3_cu1yk"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xy8bq"]
+
+[node name="MainMenu" instance=ExtResource("1_4u7ax")]
+game_scene_path = "res://main.tscn"
+options_packed_scene = ExtResource("2_sjr0b")
+credits_packed_scene = ExtResource("3_cu1yk")
+
+[node name="BackgroundMusicPlayer" parent="." index="1"]
+bus = &"Master"
+
+[node name="BackgroundTextureRect" parent="." index="2"]
+modulate = Color(0.117647, 0.0901961, 0.921569, 1)
+texture = SubResource("CanvasTexture_xy8bq")
+stretch_mode = 0
+
+[node name="Title" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="0"]
+text = "ular tangga"
+
+[node name="SubTitle" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="1"]
+text = ""

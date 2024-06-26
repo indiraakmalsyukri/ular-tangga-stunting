@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnf34373oeifp"]
+
+[ext_resource type="Texture2D" uid="uid://cx8auf7mmhe7c" path="res://char/PNG/Double/red_body_circle.png" id="2_3fmap"]
+
+[node name="char_4" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("2_3fmap")

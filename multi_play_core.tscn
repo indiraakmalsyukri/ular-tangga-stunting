@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://mxnjtrg368mc"]
+
+[ext_resource type="Script" path="res://addons/MultiplayCore/MultiPlay.gd" id="1_gsr0c"]
+[ext_resource type="PackedScene" uid="uid://b84g8iikwwto4" path="res://lobby.tscn" id="2_3bnhy"]
+[ext_resource type="Script" path="res://addons/MultiplayCore/net_protocols/MPNetProtocolBase.gd" id="2_7ww82"]
+
+[node name="MultiPlayCore" type="Node"]
+script = ExtResource("1_gsr0c")
+first_scene = ExtResource("2_3bnhy")
+swap_input_action = "swap"
+
+[node name="MPNetProtocolBase" type="Node" parent="."]
+script = ExtResource("2_7ww82")

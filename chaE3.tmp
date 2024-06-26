@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs60j1ynyxmgt"]
+
+[ext_resource type="Script" path="res://Control.gd" id="1_3dhvc"]
+[ext_resource type="Texture2D" uid="uid://2ksfc7wohs67" path="res://char/PNG/Double/blue_body_circle.png" id="1_8jck1"]
+[ext_resource type="Texture2D" uid="uid://dn6abhwqc8j4s" path="res://char/PNG/Double/green_body_circle.png" id="2_ab37u"]
+[ext_resource type="Texture2D" uid="uid://cx8auf7mmhe7c" path="res://char/PNG/Double/red_body_circle.png" id="3_8cmfp"]
+[ext_resource type="Texture2D" uid="uid://dxv1503k604pq" path="res://char/PNG/Double/yellow_body_circle.png" id="4_320bj"]
+
+[node name="character select" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3dhvc")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 701.0
+offset_bottom = 329.0
+
+[node name="char 1" type="TextureButton" parent="Control/TextureRect"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 49.0
+offset_right = 180.0
+offset_bottom = 226.0
+mouse_default_cursor_shape = 2
+
+[node name="BlueBodyCircle" type="Sprite2D" parent="Control/TextureRect/char 1"]
+position = Vector2(80, 82)
+texture = ExtResource("1_8jck1")
+
+[node name="char 2" type="TextureButton" parent="Control/TextureRect"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = 73.0
+offset_right = 372.0
+offset_bottom = 201.0
+
+[node name="GreenBodyCircle" type="Sprite2D" parent="Control/TextureRect/char 2"]
+position = Vector2(78, 57)
+texture = ExtResource("2_ab37u")
+
+[node name="char 3" type="TextureButton" parent="Control/TextureRect"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 41.0
+offset_right = 553.0
+offset_bottom = 214.0
+
+[node name="RedBodyCircle" type="Sprite2D" parent="Control/TextureRect/char 3"]
+position = Vector2(76, 89)
+texture = ExtResource("3_8cmfp")
+
+[node name="char 4" type="TextureButton" parent="Control/TextureRect"]
+layout_mode = 0
+offset_left = 613.0
+offset_top = 63.0
+offset_right = 776.0
+offset_bottom = 209.0
+
+[node name="YellowBodyCircle" type="Sprite2D" parent="Control/TextureRect/char 4"]
+position = Vector2(45, 67)
+texture = ExtResource("4_320bj")

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://btr5uii7th11y"]
+
+[node name="control_start" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -572.0
+offset_top = -320.0
+offset_right = 572.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.215686, 0.8, 1)
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -15.5
+offset_right = 55.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+auto_translate = false
+localize_numeral_system = false
+
+[node name="Button" type="Button" parent="ColorRect/GridContainer/HBoxContainer"]
+z_as_relative = false
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+action_mode = 0
+text = "start"
+
+[node name="Button2" type="Button" parent="ColorRect/GridContainer/HBoxContainer"]
+layout_mode = 2
+action_mode = 0
+text = "setting"

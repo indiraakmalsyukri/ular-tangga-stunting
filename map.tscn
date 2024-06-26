@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=3 uid="uid://ce4wtllpatq05"]
+
+[ext_resource type="Script" path="res://map.gd" id="1_cc7la"]
+[ext_resource type="Texture2D" uid="uid://qpkadtufv0rq" path="res://tile/files1513REVISI02_Ular Tangga Stunting_pages-to-jpg-0001.jpg" id="5_5fhi1"]
+[ext_resource type="Texture2D" uid="uid://bidmp4df81g7i" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_1.png" id="5_6jfd3"]
+[ext_resource type="Texture2D" uid="uid://cy0i1dd2243wr" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_2.png" id="6_kd03f"]
+[ext_resource type="Texture2D" uid="uid://mws5aeqbw121" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_3.png" id="7_8qk4j"]
+[ext_resource type="Texture2D" uid="uid://dc5ywj67gdgkw" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_4.png" id="8_ek5u4"]
+[ext_resource type="Texture2D" uid="uid://u2i7dxuro7ls" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_5.png" id="9_2wies"]
+[ext_resource type="Texture2D" uid="uid://bckpork20deh4" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_6.png" id="10_ubckb"]
+[ext_resource type="PackedScene" uid="uid://cq6hjli2fsa20" path="res://char.tscn" id="12_fkvfh"]
+[ext_resource type="Texture2D" uid="uid://dcn3s8im240eq" path="res://char/PNG/Default/tile.png" id="12_o48hb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2m6it"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6jfd3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kd03f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8qk4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ek5u4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2wies")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ubckb")
+}],
+"loop": true,
+"name": &"dice",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_jd4ki"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(8.30219, 4.7659, 0, 0, 366.913, 385.192, 0, 0, 0, 0, 571.026, 385.485, 0, 0, 0, 0, 571.026, 355.609, 0, 0, 0, 0, 366.913, 355.609, 0, 0, 0, 0, 366.913, 324.853, 0, 0, 0, 0, 570.116, 324.853, 0, 0, 0, 0, 570.116, 294.976, 0, 0, 0, 0, 366.069, 294.976, 0, 0, 0, 0, 366.069, 267.442, 0, 0, 0, 0, 571.026, 267.442, 0, 0, 0, 0, 571.026, 232.586, 0, 0, 0, 0, 365.159, 232.586)
+}
+point_count = 12
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aem6"]
+size = Vector2(80.8297, 86.8215)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_cc7la")
+
+[node name="dadu" type="Button" parent="."]
+offset_left = 144.0
+offset_top = 220.0
+offset_right = 192.0
+offset_bottom = 251.0
+text = "dadu
+"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(170, 170)
+sprite_frames = SubResource("SpriteFrames_2m6it")
+animation = &"dice"
+frame = 2
+frame_progress = 0.892084
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 321)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 0.1
+target_desired_distance = 0.1
+path_max_distance = 10.0
+path_metadata_flags = 6
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.113725, 0, 0.113725, 1)
+debug_path_custom_point_size = 0.0
+debug_path_custom_line_width = 0.6
+
+[node name="Path2D" type="Path2D" parent="NavigationAgent2D"]
+position = Vector2(-813.386, -740.051)
+scale = Vector2(3.29825, 3.41401)
+curve = SubResource("Curve2D_jd4ki")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="NavigationAgent2D/Path2D"]
+position = Vector2(566.913, 385.479)
+progress = 200.0
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="chars" parent="NavigationAgent2D/Path2D/PathFollow2D" instance=ExtResource("12_fkvfh")]
+visible = false
+position = Vector2(-9, 16)
+floor_constant_speed = true
+
+[node name="Marker2D" type="Marker2D" parent="NavigationAgent2D/Path2D/PathFollow2D"]
+position = Vector2(1, 0)
+scale = Vector2(1, 0.999999)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="NavigationAgent2D/Path2D/PathFollow2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="NavigationAgent2D/Path2D/PathFollow2D"]
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
+position = Vector2(0.0501938, 0.125076)
+rotation = 3.08284
+scale = Vector2(0.269221, 0.159552)
+shape = SubResource("RectangleShape2D_5aem6")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
+rotation = 3.08284
+scale = Vector2(0.269221, 0.159552)
+texture = ExtResource("12_o48hb")
+
+[node name="Files1513revisi02UlarTanggaStuntingPages-to-jpg-0001" type="Sprite2D" parent="."]
+position = Vector2(730, 320)
+scale = Vector2(0.281647, 0.214786)
+texture = ExtResource("5_5fhi1")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[connection signal="pressed" from="dadu" to="." method="_on_dadu_pressed"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="waypoint_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_waypoint_reached"]

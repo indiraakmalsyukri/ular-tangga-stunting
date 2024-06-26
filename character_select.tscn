@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs60j1ynyxmgt"]
+
+[ext_resource type="Script" path="res://character_select.gd" id="1_yf1bf"]
+[ext_resource type="PackedScene" uid="uid://dqbsaj4ycbsjt" path="res://character/char_3.tscn" id="2_m3s6f"]
+[ext_resource type="PackedScene" uid="uid://cbtobefg5cvxw" path="res://character/char_1.tscn" id="3_qqrhe"]
+[ext_resource type="PackedScene" uid="uid://b3wj3eqyl2tbn" path="res://character/char_2.tscn" id="4_hh1h8"]
+[ext_resource type="PackedScene" uid="uid://cnf34373oeifp" path="res://character/char_4.tscn" id="5_ym04w"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pcugu"]
+
+[node name="character select" type="Node2D"]
+script = ExtResource("1_yf1bf")
+
+[node name="character" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="char_3" parent="character" instance=ExtResource("2_m3s6f")]
+position = Vector2(799, 143)
+
+[node name="char 1" parent="character" instance=ExtResource("3_qqrhe")]
+position = Vector2(613, 144)
+
+[node name="char_2" parent="character" instance=ExtResource("4_hh1h8")]
+position = Vector2(433, 143)
+
+[node name="char_4" parent="character" instance=ExtResource("5_ym04w")]
+position = Vector2(232, 140)
+
+[node name="character_label" type="Label" parent="."]
+offset_left = 481.0
+offset_top = 360.0
+offset_right = 515.0
+offset_bottom = 383.0
+size_flags_horizontal = 4
+text = "xczx"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.513726, 0, 0.513726, 1)
+show_behind_parent = true
+clip_children = 2
+clip_contents = true
+offset_right = 1148.0
+offset_bottom = 644.0
+texture = SubResource("CanvasTexture_pcugu")
+
+[node name="Button" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 458.0
+offset_right = 580.0
+offset_bottom = 519.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.32549, 0, 0.32549, 1)
+show_behind_parent = true
+offset_left = 151.0
+offset_top = 102.0
+offset_right = 928.0
+offset_bottom = 172.0
+texture = SubResource("CanvasTexture_pcugu")
+
+[connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://gxne80634uf"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_k1y1b"]
+[ext_resource type="PackedScene" uid="uid://cq6hjli2fsa20" path="res://char.tscn" id="2_nvjoo"]
+[ext_resource type="Texture2D" uid="uid://deh50l0ovg62c" path="res://icon.svg" id="3_jfwdi"]
+[ext_resource type="Script" path="res://address_input.gd" id="4_0sfk2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpppm"]
+size = Vector2(1437, 130)
+
+[node name="main" type="Node2D"]
+position = Vector2(5, 7)
+script = ExtResource("1_k1y1b")
+player_scene = ExtResource("2_nvjoo")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://char.tscn")
+spawn_path = NodePath("..")
+spawn_limit = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(387, 443)
+texture = ExtResource("3_jfwdi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(109.5, -2)
+shape = SubResource("RectangleShape2D_dpppm")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 47.0
+offset_top = 89.0
+offset_right = 485.0
+offset_bottom = 211.0
+
+[node name="address_input" type="LineEdit" parent="Control" node_paths=PackedStringArray("shortcut_context")]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 29.0
+offset_right = 412.0
+offset_bottom = 71.0
+shortcut_context = NodePath("../join")
+text = "192.168.1.1"
+script = ExtResource("4_0sfk2")
+
+[node name="host" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 36.0
+offset_right = 143.0
+offset_bottom = 67.0
+text = "create room"
+
+[node name="join" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 43.0
+offset_top = 74.0
+offset_right = 80.0
+offset_bottom = 105.0
+text = "join"
+
+[connection signal="text_changed" from="Control/address_input" to="." method="_on_address_input_text_changed"]
+[connection signal="pressed" from="Control/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Control/join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Control/join" to="." method="_on_button_pressed"]
