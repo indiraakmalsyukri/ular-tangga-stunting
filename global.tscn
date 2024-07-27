@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" path="res://global.gd" id="1_tio54"]
 
-[node name="global" type="Node2D"]
+[node name="global" type="Node2D" groups=["global"]]
 script = ExtResource("1_tio54")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

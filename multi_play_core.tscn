@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://mxnjtrg368mc"]
+[gd_scene load_steps=5 format=3 uid="uid://mxnjtrg368mc"]
 
 [ext_resource type="Script" path="res://addons/MultiplayCore/MultiPlay.gd" id="1_gsr0c"]
-[ext_resource type="PackedScene" uid="uid://b84g8iikwwto4" path="res://lobby.tscn" id="2_3bnhy"]
-[ext_resource type="Script" path="res://addons/MultiplayCore/net_protocols/MPNetProtocolBase.gd" id="2_7ww82"]
+[ext_resource type="PackedScene" uid="uid://ce4wtllpatq05" path="res://map.tscn" id="2_6wsdb"]
+[ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="2_whtdb"]
+[ext_resource type="Script" path="res://addons/MultiplayCore/net_protocols/WebSocketNetProtocol.gd" id="3_ic28h"]
 
 [node name="MultiPlayCore" type="Node"]
+process_mode = 3
 script = ExtResource("1_gsr0c")
-first_scene = ExtResource("2_3bnhy")
+max_players = 4
+player_scene = ExtResource("2_whtdb")
+first_scene = ExtResource("2_6wsdb")
 swap_input_action = "swap"
 
-[node name="MPNetProtocolBase" type="Node" parent="."]
-script = ExtResource("2_7ww82")
+[node name="WebSocketNetProtocol" type="Node" parent="."]
+script = ExtResource("3_ic28h")

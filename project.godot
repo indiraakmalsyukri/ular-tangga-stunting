@@ -44,7 +44,3 @@ enabled=PackedStringArray("res://addons/MultiplayCore/plugin.cfg", "res://addons
 
 disable_plugin_dialogues=true
 copy_path="res://test"
-
-[rendering]
-
-renderer/rendering_method="mobile"

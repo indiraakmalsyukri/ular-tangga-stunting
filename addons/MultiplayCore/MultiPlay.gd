@@ -650,3 +650,7 @@ func _net_load_scene(scene_path: String, respawn_players = true):
 		players.respawn_node_all()
 	
 	scene_loaded.emit()
+
+
+func _on_mp_player_handshake_ready(handshake_data):
+	pass # Replace with function body.

@@ -2,17 +2,10 @@
 
 [ext_resource type="Script" path="res://lobby.gd" id="1_jkwce"]
 
-[node name="lobby" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="lobby" type="Node2D"]
 script = ExtResource("1_jkwce")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -48,7 +41,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "sdsd"
+text = "sdsdfdtgd"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -61,12 +54,11 @@ theme_override_constants/separation = 5
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "we"
+text = "1 player"
 
 [node name="player_1" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "we"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
@@ -79,12 +71,11 @@ theme_override_constants/separation = 5
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer2/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "we"
+text = "2"
 
 [node name="player_2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer2/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "we"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -97,12 +88,11 @@ theme_override_constants/separation = 5
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "we"
+text = "3"
 
 [node name="player_3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer3/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "we"
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -115,9 +105,14 @@ theme_override_constants/separation = 5
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "we"
+text = "4"
 
 [node name="player_4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "we"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="player_ready_status" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2

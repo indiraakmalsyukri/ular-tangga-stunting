@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-var character = ""
 @onready var rich_text_label = $RichTextLabel
 #@onready var mpp: MPPlayer = get_parent()
 

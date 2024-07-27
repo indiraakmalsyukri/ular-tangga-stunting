@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr7ic0dbh4gl4"]
+
+[ext_resource type="Script" path="res://left right.gd" id="1_x3pdc"]
+[ext_resource type="Texture2D" uid="uid://deh50l0ovg62c" path="res://icon.svg" id="2_nlf8x"]
+[ext_resource type="Script" path="res://sidesied.gd" id="3_66v8v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25705"]
+size = Vector2(125.535, 126.951)
+
+[sub_resource type="Curve2D" id="Curve2D_njmw5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1148.06, -0.754929, 0, 0, 0, 0, 0.51709, -0.927444)
+}
+point_count = 2
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(69.2964, 578.413)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_x3pdc")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_nlf8x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.64032, 0.409492)
+shape = SubResource("RectangleShape2D_25705")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_66v8v")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="Node2D/NavigationAgent2D"]
+curve = SubResource("Curve2D_njmw5")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Node2D/NavigationAgent2D/Path2D"]
+position = Vector2(1148.06, -0.754929)
+rotation = -3.14144
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/NavigationAgent2D/Path2D/PathFollow2D"]
+texture = ExtResource("2_nlf8x")

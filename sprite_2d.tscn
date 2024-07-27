@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6m12x05fhw48"]
+
+[ext_resource type="Texture2D" uid="uid://dcn3s8im240eq" path="res://char/PNG/Default/tile.png" id="1_1uhk2"]
+
+[node name="Sprite2D" type="Sprite2D"]
+visible = false
+rotation = 3.08284
+scale = Vector2(0.269221, 0.159552)
+texture = ExtResource("1_1uhk2")
