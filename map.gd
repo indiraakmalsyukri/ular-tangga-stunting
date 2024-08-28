@@ -1,7 +1,8 @@
 extends Node2D
-
+signal post(milage)
 #@onready var animated_sprite_2d = $AnimatedSprite2D
 #@onready var dadu = $dadu
+
 @onready var dadu = $Control/Container/dadu
 @onready var node_2d = $"."
 @onready var sprite_2d = $NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D/Sprite2D
@@ -11,6 +12,7 @@ extends Node2D
 @onready var player = $NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D/player
 @onready var animated_sprite_2d = $Control/Container/AnimatedSprite2D
 var player_scene = preload("res://Player.tscn")
+@export var minigame:Array[PackedScene]=[]
 #@onready var multi_play_core = "res://multi_play_core.tscn"
 #@onready var mpp: MPPlayer = get_node("res://multi_play_core.tscn")
 #@onready var mpp: MPPlayer = get_parent()
@@ -21,8 +23,10 @@ var targetpos:int
 var speed = 1
 var step : int
 var rng = RandomNumberGenerator.new()
-var milage=0
+var milage:int
 var backs: int
+var walk:int
+@onready var timer = $Timer
 #@onready var map = get_tree().get_root().get_node("player2")
 # Called when the node enters the scene tree for the first time.
 #var player
@@ -42,6 +46,8 @@ func _ready():
 	#player.position = path_follow_2d.position
 	#dadu.pressed.connect(_on_dadu_pressed)
 	#position = path_follow_2d.position
+	milage=Global.milage
+	
 
 func _on_swap_focused(_old_focus):
 	$SwapIndicator.visible = true
@@ -99,15 +105,22 @@ func _on_dadu_pressed():
 	step = dicenumber
 	animated_sprite_2d.set_frame(dicenumber-1)
 	animated_sprite_2d.show()
-	move()
+	move1()
 	print("buton pressed",dicenumber)
 	pass # Replace with function body.
 
-func move() -> void:
-	var walk=step*far
+func move1():
+	walk=step*far
 	targetpos = path_follow_2d.progress + walk
-	milage= step+milage
+	milage = step+milage
+	milage=milage-backs
+	Global.milage=milage
+	var tween = create_tween()
+	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
+	print ("targetpos",targetpos,"step",step,"walk",walk,"milage",milage)
 	match milage:
+		1:
+			targetpos = 735
 		3:
 			targetpos = 735
 		4:
@@ -141,12 +154,51 @@ func move() -> void:
 			targetpos=630
 		23:
 			targetpos=810
-		
-	milage=milage-backs
-	var tween = create_tween()
-	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
-	print ("targetpos",targetpos,"step",step,"walk",walk,"milage",milage)
+	
 	checkwin()
+	if ==targetpos:
+		move()
+	
+	
+func move():
+	match milage:
+		1:
+			Global.goto_scene("res://platformer.tscn")
+		3:
+			targetpos = 735
+		4:
+			targetpos = 525
+		9:
+			targetpos = 105
+		3:
+			targetpos = 875
+		7:
+			targetpos = 1015
+		16:
+			targetpos=1120
+		23:
+			targetpos=385
+		24:
+			targetpos=770
+		27:
+			targetpos=1155
+		35:
+			targetpos=210
+			#corection
+		4:
+			targetpos=145
+		6:
+			targetpos=210
+		11:
+			targetpos=390
+		17:
+			targetpos=605
+		18:
+			targetpos=630
+		23:
+			targetpos=810
+	
+	
 	#var walk = step * 45
 	#var targetpos = path_follow_2d.progress + walk
 	#var tween = create_tween()
@@ -154,6 +206,7 @@ func move() -> void:
 	#currentpos += step
 	#print("Target position:", targetpos, "Step:", step, "Walk:", walk)
 	#checkwin()
+
 func checkwin():
 	if currentpos>=36:
 		print ("win")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://gxne80634uf"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_k1y1b"]
-[ext_resource type="PackedScene" uid="uid://cq6hjli2fsa20" path="res://char.tscn" id="2_nvjoo"]
+[ext_resource type="PackedScene" uid="uid://cq6hjli2fsa20" path="res://catcher/char.tscn" id="2_nvjoo"]
 [ext_resource type="Script" path="res://address_input.gd" id="4_0sfk2"]
 
 [node name="main" type="Node2D"]
@@ -10,7 +10,6 @@ script = ExtResource("1_k1y1b")
 player_scene = ExtResource("2_nvjoo")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://char.tscn")
 spawn_path = NodePath("..")
 spawn_limit = 4
 
@@ -56,5 +55,5 @@ text = "join"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/host" to="." method="_on_host_pressed"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer/address_input" to="." method="_on_address_input_text_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/join" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/join" to="." method="_on_join_pressed"]

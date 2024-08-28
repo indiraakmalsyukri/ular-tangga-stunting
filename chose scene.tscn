@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://b868ai5a2rekp"]
+
+[ext_resource type="PackedScene" uid="uid://dvmxqwxrtu4k3" path="res://choice.tscn" id="1_kl7gy"]
+[ext_resource type="Script" path="res://chose scene.gd" id="1_l1hoh"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+script = ExtResource("1_l1hoh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.0
+offset_right = 134.0
+offset_bottom = 172.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 100
+text = "cxvxv"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="choice2" parent="HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_kl7gy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+
+[node name="choice" parent="HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_kl7gy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40

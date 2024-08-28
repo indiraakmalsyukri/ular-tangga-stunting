@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn7om3d4cxokr"]
+
+[ext_resource type="Script" path="res://collectibles.gd" id="1_n76s1"]
+[ext_resource type="Texture2D" uid="uid://deh50l0ovg62c" path="res://icon.svg" id="2_2tr07"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cc416"]
+size = Vector2(126.508, 127.398)
+
+[node name="collectibles" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_n76s1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2tr07")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.582397, 0.191051)
+shape = SubResource("RectangleShape2D_cc416")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

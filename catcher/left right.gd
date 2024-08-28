@@ -1,3 +1,4 @@
+class_name character
 extends CharacterBody2D
 
 

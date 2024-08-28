@@ -11,6 +11,7 @@
 position = Vector2(69.2964, 578.413)
 script = ExtResource("1_ad6di")
 enemy_type = Array[PackedScene]([ExtResource("4_0u1m7")])
+speed = null
 scroll_speed = -100
 
 [node name="enemy spawner" type="Node" parent="."]
