@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://50t6kiwg2n4s"]
+
+[ext_resource type="Script" path="res://droop.gd" id="1_br7t8"]
+[ext_resource type="Texture2D" uid="uid://cdnm6j7tm55pf" path="res://char/PNG/Double/tile_grey.png" id="2_uucps"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljjo3"]
+
+[node name="food" type="Area2D"]
+script = ExtResource("1_br7t8")
+speed = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uucps")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ljjo3")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="hit" from="." to="." method="_on_hit"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dvmxqwxrtu4k3"]
 
-[ext_resource type="Script" path="res://choice.gd" id="1_dlk58"]
+[ext_resource type="Script" path="res://minigames/quiz/choice.gd" id="1_dlk58"]
 
 [node name="choice" type="Button"]
 text = "dreare 

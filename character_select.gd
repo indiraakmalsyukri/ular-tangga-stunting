@@ -20,5 +20,5 @@ func character_selected(character_name):
 
 func _on_button_pressed():
 	if current_selected_character_name:
-		Global.set_player_character (current_selected_character_name)# Replace with function body.
-		get_tree().change_scene_to_file("res://map.tscn")
+		Global.set_player_character (current_selected_character_name)
+		Global.goto_scene("res://map.tscn")

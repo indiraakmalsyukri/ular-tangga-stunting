@@ -1,12 +1,115 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx4gtf5qs02uw"]
+[gd_scene load_steps=10 format=3 uid="uid://bx4gtf5qs02uw"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6mf57"]
 [ext_resource type="Texture2D" uid="uid://deh50l0ovg62c" path="res://icon.svg" id="1_lxoxi"]
+[ext_resource type="Texture2D" uid="uid://5ghj1n5cbo24" path="res://char/PNG/Double/face_b.png" id="3_ougrw"]
+[ext_resource type="Texture2D" uid="uid://bet02ndb6l2m2" path="res://char/PNG/Double/facial_part_eye_open.png" id="4_b8ubk"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jtneb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w044u"]
 size = Vector2(127, 130)
+
+[sub_resource type="Animation" id="Animation_ie35d"]
+resource_name = "eye"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/AnimPlayer/left eye:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-12, -0.25, 0, 0.25, 0, -12, -0.2, 201.5, 0.3, -23.5),
+"times": PackedFloat32Array(0.1, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/AnimPlayer/left eye:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/AnimPlayer/right eye:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/AnimPlayer/right eye:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+
+[sub_resource type="Animation" id="Animation_wr4xc"]
+resource_name = "idle"
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/AnimPlayer/left eye:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-11, -0.25, 0, 0.6, 14.5, 11, 0, 11, 0.1, 13.5),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/AnimPlayer/left eye:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-11, -0.3, 0.5, 0.25, -13, -11, -0.3, 0.5, 0.25, -13),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/AnimPlayer/right eye:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(11, -0.25, 0, 0.25, 0, -11, -0.25, 14, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/AnimPlayer/right eye:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-11, -0.25, 0, 0.25, -13, -11, -0.25, 0, 0.25, -16),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ow118"]
+_data = {
+"eye": SubResource("Animation_ie35d"),
+"idle": SubResource("Animation_wr4xc")
+}
 
 [node name="player" type="CharacterBody2D"]
 collision_mask = 2
@@ -28,3 +131,24 @@ scale = Vector2(0.375, 0.375)
 shape = SubResource("RectangleShape2D_w044u")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(80, -28)
+scale = Vector2(0.52, 0.645833)
+texture = ExtResource("3_ougrw")
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ow118")
+}
+
+[node name="left eye" type="Sprite2D" parent="Sprite2D/AnimPlayer"]
+position = Vector2(-12, 0)
+scale = Vector2(0.4, 0.375)
+texture = ExtResource("4_b8ubk")
+
+[node name="right eye" type="Sprite2D" parent="Sprite2D/AnimPlayer"]
+scale = Vector2(0.4, 0.375)
+texture = ExtResource("4_b8ubk")

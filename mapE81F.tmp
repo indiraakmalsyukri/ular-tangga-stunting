@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ce4wtllpatq05"]
+[gd_scene load_steps=16 format=3 uid="uid://ce4wtllpatq05"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_cc7la"]
 [ext_resource type="Texture2D" uid="uid://bidmp4df81g7i" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_1.png" id="5_6jfd3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bckpork20deh4" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_6.png" id="10_ubckb"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="11_ghfs2"]
 [ext_resource type="Texture2D" uid="uid://dewwhn8a78ipx" path="res://tile/Frame 5.png" id="11_uxdou"]
+[ext_resource type="Texture2D" uid="uid://dcn3s8im240eq" path="res://char/PNG/Default/tile.png" id="12_o48hb"]
 
 [sub_resource type="Curve2D" id="Curve2D_jd4ki"]
 resource_local_to_scene = true
@@ -50,40 +51,6 @@ animations = [{
 
 [sub_resource type="Shortcut" id="Shortcut_t3wxf"]
 
-[sub_resource type="Animation" id="Animation_iloob"]
-resource_name = "transition"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("transition/TextureRect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("transition/TextureRect:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0431373, 0.0431373, 0.0431373, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_we2y1"]
-_data = {
-"transition": SubResource("Animation_iloob")
-}
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_wd1pe"]
-
 [node name="Node2D" type="Node2D"]
 clip_children = 1
 position = Vector2(1, -1)
@@ -91,7 +58,7 @@ script = ExtResource("1_cc7la")
 far = 35
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(577, 322)
+position = Vector2(577, 321)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 0.1
@@ -123,13 +90,20 @@ scale = Vector2(1, 0.999999)
 motion_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
+visible = false
 position = Vector2(0.0501938, 0.125076)
 rotation = 3.08284
 scale = Vector2(0.269221, 0.159552)
 shape = SubResource("RectangleShape2D_5aem6")
 
+[node name="Sprite2D" type="Sprite2D" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
+visible = false
+rotation = 3.08284
+scale = Vector2(0.269221, 0.159552)
+texture = ExtResource("12_o48hb")
+
 [node name="player" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D" instance=ExtResource("11_ghfs2")]
-position = Vector2(-5.44947, 2.30197)
+position = Vector2(-1.4507, 0.000496387)
 scale = Vector2(0.303191, 0.292911)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
@@ -151,13 +125,15 @@ position = Vector2(727.825, 316)
 scale = Vector2(0.178964, 0.150365)
 texture = ExtResource("11_uxdou")
 
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 290.0
-offset_top = 200.0
+offset_top = -332.0
 offset_right = 365.0
 offset_bottom = 332.0
 grow_vertical = 2
@@ -208,25 +184,6 @@ position = Vector2(-0.0591125, -100.455)
 position = Vector2(430.698, 566.323)
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="transition" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_we2y1")
-}
-
-[node name="TextureRect" type="TextureRect" parent="transition"]
-visible = false
-modulate = Color(0.0431373, 0.0431373, 0.0431373, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 1152.0
-offset_bottom = 646.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_wd1pe")
+wait_time = 0.001
 
 [connection signal="pressed" from="Control/Container/dadu" to="." method="_on_dadu_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

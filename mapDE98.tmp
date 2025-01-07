@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ce4wtllpatq05"]
+[gd_scene load_steps=19 format=3 uid="uid://ce4wtllpatq05"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_cc7la"]
 [ext_resource type="Texture2D" uid="uid://bidmp4df81g7i" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_1.png" id="5_6jfd3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bckpork20deh4" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_6.png" id="10_ubckb"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="11_ghfs2"]
 [ext_resource type="Texture2D" uid="uid://dewwhn8a78ipx" path="res://tile/Frame 5.png" id="11_uxdou"]
+[ext_resource type="Texture2D" uid="uid://dcn3s8im240eq" path="res://char/PNG/Default/tile.png" id="12_o48hb"]
 
 [sub_resource type="Curve2D" id="Curve2D_jd4ki"]
 resource_local_to_scene = true
@@ -59,7 +60,7 @@ tracks/0/path = NodePath("transition/TextureRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 1),
+"times": PackedFloat32Array(0.1, 0.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -71,7 +72,7 @@ tracks/1/path = NodePath("transition/TextureRect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 1),
+"times": PackedFloat32Array(0.1, 0.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0431373, 0.0431373, 0.0431373, 1), Color(1, 1, 1, 1)]
@@ -123,13 +124,20 @@ scale = Vector2(1, 0.999999)
 motion_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
+visible = false
 position = Vector2(0.0501938, 0.125076)
 rotation = 3.08284
 scale = Vector2(0.269221, 0.159552)
 shape = SubResource("RectangleShape2D_5aem6")
 
+[node name="Sprite2D" type="Sprite2D" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
+visible = false
+rotation = 3.08284
+scale = Vector2(0.269221, 0.159552)
+texture = ExtResource("12_o48hb")
+
 [node name="player" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D" instance=ExtResource("11_ghfs2")]
-position = Vector2(-5.44947, 2.30197)
+position = Vector2(-1.4507, 0.000496387)
 scale = Vector2(0.303191, 0.292911)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
@@ -150,6 +158,9 @@ position = Vector2(559.347, 382.234)
 position = Vector2(727.825, 316)
 scale = Vector2(0.178964, 0.150365)
 texture = ExtResource("11_uxdou")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -208,6 +219,7 @@ position = Vector2(-0.0591125, -100.455)
 position = Vector2(430.698, 566.323)
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.001
 
 [node name="transition" type="AnimationPlayer" parent="."]
 libraries = {
@@ -216,7 +228,6 @@ libraries = {
 
 [node name="TextureRect" type="TextureRect" parent="transition"]
 visible = false
-modulate = Color(0.0431373, 0.0431373, 0.0431373, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -229,4 +240,3 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_wd1pe")
 
 [connection signal="pressed" from="Control/Container/dadu" to="." method="_on_dadu_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

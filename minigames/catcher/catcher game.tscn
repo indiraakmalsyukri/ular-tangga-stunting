@@ -1,17 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://dr7ic0dbh4gl4"]
 
-[ext_resource type="Script" path="res://catcher game.gd" id="1_ad6di"]
+[ext_resource type="Script" path="res://minigames/catcher/catcher game.gd" id="1_ad6di"]
+[ext_resource type="PackedScene" uid="uid://50t6kiwg2n4s" path="res://food.tscn" id="2_na3fb"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="3_bwhvl"]
 [ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="4_0u1m7"]
-[ext_resource type="Texture2D" uid="uid://deh50l0ovg62c" path="res://icon.svg" id="4_ocgyk"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_py406"]
+[ext_resource type="Texture2D" uid="uid://dcvxtms4hte5q" path="res://asset/brick-wall-background-cartoon-drawing-artwork-vector_893055-15882-ezgif.com-avif-to-jpg-converter.jpg" id="5_0gagx"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(69.2964, 578.413)
 script = ExtResource("1_ad6di")
-enemy_type = Array[PackedScene]([ExtResource("4_0u1m7")])
-scroll_speed = -100
+enemy_type = Array[PackedScene]([ExtResource("2_na3fb"), ExtResource("4_0u1m7")])
+speed = 100
+scroll_speed = 0
+score_n = 2
+targetpos = 400
 
 [node name="enemy spawner" type="Node" parent="."]
 
@@ -23,21 +25,19 @@ autostart = true
 position = Vector2(-23.2357, 7.39771)
 speed = 1000
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_py406")
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(0, 960)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-scale = Vector2(9.62616, 5.68817)
-texture = ExtResource("4_ocgyk")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 126, 122)
+position = Vector2(586.863, 186.468)
+scale = Vector2(1.38743, 1.09152)
+texture = ExtResource("5_0gagx")
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 40.0
+autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

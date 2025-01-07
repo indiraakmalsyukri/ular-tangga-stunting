@@ -4,19 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://deh50l0ovg62c" path="res://icon.svg" id="2_2tr07"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cc416"]
-size = Vector2(126.508, 127.398)
+size = Vector2(80.7007, 76.7712)
 
 [node name="collectibles" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_n76s1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.374542, -0.374573)
+scale = Vector2(0.631276, 0.584454)
 texture = ExtResource("2_2tr07")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.0988464, -1.01297)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.582397, 0.191051)
+position = Vector2(-0.209671, -0.0492973)
 shape = SubResource("RectangleShape2D_cc416")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

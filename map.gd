@@ -2,7 +2,7 @@ extends Node2D
 signal post(milage)
 #@onready var animated_sprite_2d = $AnimatedSprite2D
 #@onready var dadu = $dadu
-
+@onready var transition = $transition
 @onready var dadu = $Control/Container/dadu
 @onready var node_2d = $"."
 @onready var sprite_2d = $NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D/Sprite2D
@@ -11,7 +11,7 @@ signal post(milage)
 @onready var path_2d = $NavigationAgent2D/Path2D
 @onready var player = $NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D/player
 @onready var animated_sprite_2d = $Control/Container/AnimatedSprite2D
-var player_scene = preload("res://Player.tscn")
+#var player_scene = preload("res://player.tscn")
 @export var minigame:Array[PackedScene]=[]
 #@onready var multi_play_core = "res://multi_play_core.tscn"
 #@onready var mpp: MPPlayer = get_node("res://multi_play_core.tscn")
@@ -19,7 +19,7 @@ var player_scene = preload("res://Player.tscn")
 @export var far : int
 @onready var multiplayer_synchronizer = $NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D/player
 var currentpos = 0
-var targetpos:int
+var targetpos : int
 var speed = 1
 var step : int
 var rng = RandomNumberGenerator.new()
@@ -47,6 +47,17 @@ func _ready():
 	#dadu.pressed.connect(_on_dadu_pressed)
 	#position = path_follow_2d.position
 	milage=Global.milage
+	var tween= create_tween()
+	if is_instance_valid(path_follow_2d):
+		path_follow_2d.progress = Global.player_progress
+	else:
+		print("PathFollow2D node has been freed or is invalid")
+	targetpos = Global.targetpos
+	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
+	#if Global.player_progress > 0.0:
+	##tween.tween_property(path_follow_2d, "progress", Global.player_progress, 1.0)  # 1 second duration
+	#if Global.path_follow_2d>0.0:
+		#starts()
 	
 
 func _on_swap_focused(_old_focus):
@@ -69,15 +80,15 @@ func _on_player_ready():
 	#position = Vector2(mpp.path_follow_2d)
 
 # On handshake data is ready. This emits to everyone in the server. You can also use it to init something for all players.
-func _on_handshake_ready(hs):
-	#print(mpp.player_index)
-	pass
-func _physics_process(delta):
-	#if !mpp.is_ready:
-		return
-func _process(delta):
-	#dadu.pressed.connect(self,_on_dadu_pressed)
-	pass
+#func _on_handshake_ready(hs):
+	##print(mpp.player_index)
+	#pass
+#func _physics_process(delta):
+	##if !mpp.is_ready:
+		#return
+#func _process(delta):
+	##dadu.pressed.connect(self,_on_dadu_pressed)
+	#pass
 
 # When player node is ready, this only emit locally.
 
@@ -108,7 +119,12 @@ func _on_dadu_pressed():
 	move1()
 	print("buton pressed",dicenumber)
 	pass # Replace with function body.
-
+	
+func start():
+	targetpos=Global.targetpos
+	var tween = create_tween()
+	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
+	
 func move1():
 	walk=step*far
 	targetpos = path_follow_2d.progress + walk
@@ -118,9 +134,10 @@ func move1():
 	var tween = create_tween()
 	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
 	print ("targetpos",targetpos,"step",step,"walk",walk,"milage",milage)
+	Global.player_progress = path_follow_2d.progress
+	Global.targetpos=targetpos
+	Global.player_progress=path_follow_2d.progress
 	match milage:
-		1:
-			targetpos = 735
 		3:
 			targetpos = 735
 		4:
@@ -154,22 +171,45 @@ func move1():
 			targetpos=630
 		23:
 			targetpos=810
-	
+	tween.finished.connect(transition2)
 	checkwin()
-	if ==targetpos:
-		move()
 	
-	
+func starts():
+	walk=step*far
+	path_follow_2d.progress = Global.player_progress
+	targetpos = path_follow_2d.progress + walk
+	milage = step+milage
+	milage=milage-backs
+	Global.milage=milage
+	var tween = create_tween()
+	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
+	#path_follow_2d.progress=Global.path_follow_2d
+	print ("targetpos",targetpos,"step",step,"walk",walk,"milage",milage)
+	#Global.targetpos=targetpos
+	#Global.path_follow_2d=path_follow_2d
+
+func  transition2():
+	match milage:
+		1,2,3:
+			transition.play("transition")
+			timer.start()
+			#timer.timeout(move)
+			#move()
+func _on_timer_timeout():
+	move()
 func move():
 	match milage:
 		1:
-			Global.goto_scene("res://platformer.tscn")
+			Global.goto_scene("res://minigames/platformer/platformer.tscn")
 		3:
 			targetpos = 735
+			Global.goto_scene("res://minigames/runner/runner.tscn")
 		4:
 			targetpos = 525
+			Global.goto_scene("res://minigames/catcher/catcher game.tscn")
 		9:
 			targetpos = 105
+			Global.goto_scene("res://minigames/platformer/platformer.tscn")
 		3:
 			targetpos = 875
 		7:
@@ -210,6 +250,9 @@ func move():
 func checkwin():
 	if currentpos>=36:
 		print ("win")
+
+
+
 
 
 

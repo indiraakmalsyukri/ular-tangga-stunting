@@ -1,5 +1,6 @@
 class_name Player
 extends CharacterBody2D
+@onready var anim_player = $AnimPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 @export var speed : int
@@ -19,6 +20,7 @@ func _ready():
 	#mpp.swap_focused.connect(_on_swap_focused)
 	#mpp.swap_unfocused.connect(_on_swap_unfocused)
 	#set_multiplayer_authority(name.to_int())
+	#anim_player.play("idle")
 	get_player_character()
 	var player_ins =player.instantiate()
 	add_child(player_ins)

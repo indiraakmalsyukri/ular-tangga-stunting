@@ -1,14 +1,19 @@
+
 extends Node
-var speed=1
+
 # Assign this variable to MPAuth node
 @export var auth: MPAuth
-
-func _ready():
-	auth.authenticate_function = _auth_check
-
+@export var Player:PackedScene
+@export var position:Vector2= Vector2.ZERO
 func _auth_check(plr_id, credentials_data: Dictionary, handshake_data: Dictionary):
 	# Return authentication data, otherwise if failed, return false.
 	return {}
+func _ready():
+	SpawnPlayer()
 	
-#func _process(delta):
-	
+func SpawnPlayer():
+	var play=Player.instantiate()
+	play.position=position
+	get_parent().add_child(play)
+	play=Player
+	pass

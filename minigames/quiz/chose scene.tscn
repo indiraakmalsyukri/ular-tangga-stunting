@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://b868ai5a2rekp"]
+
+[ext_resource type="PackedScene" uid="uid://dvmxqwxrtu4k3" path="res://minigames/quiz/choice.tscn" id="1_kl7gy"]
+[ext_resource type="Script" path="res://minigames/quiz/chose scene.gd" id="1_l1hoh"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nwdho"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+script = ExtResource("1_l1hoh")
+targetpos = 30
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_right = 118.0
+offset_bottom = 300.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 100
+text = "cxvxv"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="choice2" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_kl7gy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+answer = true
+
+[node name="choice" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_kl7gy")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.764706, 0, 0.764706, 1)
+show_behind_parent = true
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -572.0
+offset_top = -225.0
+offset_right = 580.0
+offset_bottom = 927.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_nwdho")
+expand_mode = 2
+
+[connection signal="incorrect" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice2" to="." method="_on_choice_2_incorrect"]
