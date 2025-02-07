@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://di43pifvmlm13"]
+[gd_scene load_steps=3 format=3 uid="uid://di43pifvmlm13"]
 
 [ext_resource type="Script" path="res://global.gd" id="1_tio54"]
+[ext_resource type="PackedScene" uid="uid://bpvccuhddbpjc" path="res://transition.tscn" id="2_egd01"]
 
 [node name="global" type="Node2D" groups=["global"]]
 script = ExtResource("1_tio54")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+
+[node name="transition" parent="." instance=ExtResource("2_egd01")]
+
+[editable path="transition"]

@@ -1,33 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmlq2ecelvnsc"]
+[gd_scene load_steps=6 format=3 uid="uid://xdixv1gm3iek"]
 
-[ext_resource type="Script" path="res://minigames/runner/runner.gd" id="1_br6ij"]
-[ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="1_xevpp"]
-[ext_resource type="PackedScene" uid="uid://50t6kiwg2n4s" path="res://food.tscn" id="2_yprss"]
-[ext_resource type="Texture2D" uid="uid://cvy538tsm05ru" path="res://asset/road 1 .png" id="4_c3ar0"]
+[ext_resource type="Script" path="res://minigames/avoid/avoid.gd" id="1_n3k4v"]
+[ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="2_lbq7b"]
+[ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="3_m7h4x"]
+[ext_resource type="Texture2D" uid="uid://cvy538tsm05ru" path="res://asset/road 1 .png" id="4_mc80p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j2ho8"]
 normal = Vector2(0.0204223, -0.999791)
 distance = -638.678
 
-[sub_resource type="LabelSettings" id="LabelSettings_0unmm"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_533ck"]
-
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_br6ij")
-enemy_type = Array[PackedScene]([ExtResource("2_yprss")])
+script = ExtResource("1_n3k4v")
+enemy_type = Array[PackedScene]([ExtResource("2_lbq7b")])
+speed = 600
 score_n = 5
-targetpos = 530
-targetpos1 = 245
-milage = 15
-milage1 = 7
+milage = 29
+milage1 = 17
+targetpos = 1020
+targetpos1 = 605
 
 [node name="enemy spawner" type="Node" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="player" parent="." instance=ExtResource("1_xevpp")]
+[node name="player" parent="." instance=ExtResource("3_m7h4x")]
 position = Vector2(592.274, 563.527)
 collision_mask = 3
 motion_mode = 0
@@ -47,10 +44,10 @@ motion_mirroring = Vector2(0, 960)
 [node name="Road1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(572, 487.25)
 scale = Vector2(1.46096, 0.856189)
-texture = ExtResource("4_c3ar0")
+texture = ExtResource("4_mc80p")
 
 [node name="Timer2" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 10.0
 autostart = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -60,11 +57,10 @@ offset_bottom = 40.0
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "["
-label_settings = SubResource("LabelSettings_0unmm")
-
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_533ck")
+text = "0"
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"

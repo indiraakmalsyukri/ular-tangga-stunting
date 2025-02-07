@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcsllkmenf8yx"]
+
+[ext_resource type="Script" path="res://droop.gd" id="1_hh5qx"]
+[ext_resource type="Texture2D" uid="uid://c3tw3ffcglbq3" path="res://asset/rb_60282.png" id="2_qjxhs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ks8ux"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwftu"]
+atlas = ExtResource("2_qjxhs")
+region = Rect2(1581.43, 1584.64, 345.573, 349.37)
+
+[node name="food2" type="Area2D"]
+script = ExtResource("1_hh5qx")
+speed = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ks8ux")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = SubResource("AtlasTexture_xwftu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="hit" from="." to="." method="_on_hit"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

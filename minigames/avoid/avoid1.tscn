@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://4wa1usqff6lr"]
+
+[ext_resource type="Script" path="res://minigames/avoid/avoid.gd" id="1_riv84"]
+[ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="2_40bx7"]
+[ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="3_plpds"]
+[ext_resource type="Texture2D" uid="uid://cvy538tsm05ru" path="res://asset/road 1 .png" id="4_o1npr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j2ho8"]
+normal = Vector2(0.0204223, -0.999791)
+distance = -638.678
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_riv84")
+enemy_type = Array[PackedScene]([ExtResource("2_40bx7")])
+milage = 21
+
+[node name="enemy spawner" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="player" parent="." instance=ExtResource("3_plpds")]
+position = Vector2(592.274, 563.527)
+collision_mask = 3
+motion_mode = 0
+speed = 1000
+JUMP_VELOCITY = 1000
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_j2ho8")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 960)
+
+[node name="Road1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(572, 487.25)
+scale = Vector2(1.46096, 0.856189)
+texture = ExtResource("4_o1npr")
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0"

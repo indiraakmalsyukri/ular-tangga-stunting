@@ -16,6 +16,3 @@ func _on_body_entered(body):
 	if body is Player:
 		hit.emit()
 		queue_free()
-
-
-	

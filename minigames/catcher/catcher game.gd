@@ -13,11 +13,15 @@ extends Node2D
 @onready var timer_2 = $Timer2
 @export var milage :int
 @export var milage1 :int
+@onready var label_2 = $Node2D/HBoxContainer/VBoxContainer/Label2
+@onready var label = $Node2D/HBoxContainer/VBoxContainer/Label
 const DROOP = preload("res://droop.tscn")
 var score=0
 func _ready():
 	timer.timeout.connect(_on_timer_timeout)
 	#enemy_spawner.hit.connect(_on_droop_hit)
+	label.text = "score: %s" % score
+	label_2.text = "score yang diperlukan : %s" % score_n
 func _process(delta):
 	PB.scroll_offset.y += delta*scroll_speed
 	#if score = 10
@@ -29,6 +33,7 @@ func _on_timer_timeout():
 	enemy_spawner.add_child(e)
 func _on_droop_hit():
 	score += 1
+	label.text = "score: %s" % score
 	print(score)
 func _on_timer_2_timeout():
 	back_scene()

@@ -1,13 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://ce4wtllpatq05"]
+[gd_scene load_steps=19 format=3 uid="uid://ce4wtllpatq05"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_cc7la"]
+[ext_resource type="PackedScene" uid="uid://bqnq7f4g8eu3y" path="res://player/scenes/player_spawner.tscn" id="2_8giny"]
 [ext_resource type="Texture2D" uid="uid://bidmp4df81g7i" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_1.png" id="5_6jfd3"]
 [ext_resource type="Texture2D" uid="uid://cy0i1dd2243wr" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_2.png" id="6_kd03f"]
 [ext_resource type="Texture2D" uid="uid://mws5aeqbw121" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_3.png" id="7_8qk4j"]
 [ext_resource type="Texture2D" uid="uid://dc5ywj67gdgkw" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_4.png" id="8_ek5u4"]
 [ext_resource type="Texture2D" uid="uid://u2i7dxuro7ls" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_5.png" id="9_2wies"]
+[ext_resource type="PackedScene" uid="uid://bpvccuhddbpjc" path="res://transition.tscn" id="10_d8cfm"]
 [ext_resource type="Texture2D" uid="uid://bckpork20deh4" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_6.png" id="10_ubckb"]
-[ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="11_ghfs2"]
 [ext_resource type="Texture2D" uid="uid://dewwhn8a78ipx" path="res://tile/Frame 5.png" id="11_uxdou"]
 
 [sub_resource type="Curve2D" id="Curve2D_jd4ki"]
@@ -16,9 +17,6 @@ _data = {
 "points": PackedVector2Array(8.30219, 4.7659, 0, 0, 377.505, 382.877, 0, 0, 0, 0, 541.763, 382.877, 0, 0, 0, 0, 559.344, 382.917, 0, 0, 0, 0, 558.651, 352.894, 0, 0, 0, 0, 377.505, 352.894, 0, 0, 0, 0, 377.505, 321.924, 0, 0, 0, 0, 558.651, 321.924, 0, 0, 0, 0, 558.651, 294.11, 0, 0, 0, 0, 377.505, 294.11, 0, 0, 0, 0, 377.505, 267.442, 0, 0, 0, 0, 558.651, 267.442, 0, 0, 0, 0, 558.651, 232.586, 0, 0, 0, 0, 377.505, 232.586)
 }
 point_count = 13
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aem6"]
-size = Vector2(80.8297, 86.8215)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2m6it"]
 animations = [{
@@ -84,6 +82,8 @@ _data = {
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_wd1pe"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_ckjq3"]
+
 [node name="Node2D" type="Node2D"]
 clip_children = 1
 position = Vector2(1, -1)
@@ -119,23 +119,16 @@ loop = false
 position = Vector2(1, 0)
 scale = Vector2(1, 0.999999)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="NavigationAgent2D/Path2D/PathFollow2D"]
-motion_mode = 1
+[node name="Node2D" type="Node2D" parent="NavigationAgent2D/Path2D/PathFollow2D"]
+z_index = -1
+scale = Vector2(0.25, 0.25)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
-position = Vector2(0.0501938, 0.125076)
-rotation = 3.08284
-scale = Vector2(0.269221, 0.159552)
-shape = SubResource("RectangleShape2D_5aem6")
+[node name="PlayerSpawner" parent="NavigationAgent2D/Path2D/PathFollow2D/Node2D" instance=ExtResource("2_8giny")]
 
-[node name="player" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D" instance=ExtResource("11_ghfs2")]
-position = Vector2(-5.44947, 2.30197)
-scale = Vector2(0.303191, 0.292911)
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D"]
-_spawnable_scenes = PackedStringArray("res://player.tscn")
-spawn_path = NodePath("..")
-spawn_limit = 4
+[node name="player" parent="NavigationAgent2D/Path2D/PathFollow2D/Node2D/PlayerSpawner" index="0"]
+z_index = 1
+position = Vector2(-0.322258, 0.0942168)
+collision = true
 
 [node name="Marker2D" type="Marker2D" parent="NavigationAgent2D/Path2D"]
 position = Vector2(558.66, 382.287)
@@ -152,6 +145,7 @@ scale = Vector2(0.178964, 0.150365)
 texture = ExtResource("11_uxdou")
 
 [node name="Control" type="Control" parent="."]
+z_index = 1
 layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
@@ -216,7 +210,7 @@ libraries = {
 
 [node name="TextureRect" type="TextureRect" parent="transition"]
 visible = false
-modulate = Color(0.0431373, 0.0431373, 0.0431373, 1)
+modulate = Color(0.574728, 0.574728, 0.574728, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -228,5 +222,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_wd1pe")
 
+[node name="transition2" parent="." instance=ExtResource("10_d8cfm")]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.482353, 0.117647, 0.737255, 1)
+z_index = -1
+offset_right = 1151.0
+offset_bottom = 647.0
+mouse_filter = 2
+texture = SubResource("CanvasTexture_ckjq3")
+
 [connection signal="pressed" from="Control/Container/dadu" to="." method="_on_dadu_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="NavigationAgent2D/Path2D/PathFollow2D/Node2D/PlayerSpawner"]

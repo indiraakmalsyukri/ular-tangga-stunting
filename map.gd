@@ -58,7 +58,7 @@ func _ready():
 	##tween.tween_property(path_follow_2d, "progress", Global.player_progress, 1.0)  # 1 second duration
 	#if Global.path_follow_2d>0.0:
 		#starts()
-	
+	print("map",get_tree(),get_children())
 
 func _on_swap_focused(_old_focus):
 	$SwapIndicator.visible = true
@@ -112,52 +112,47 @@ func _on_dadu_pressed():
 	animated_sprite_2d.hide()
 	RandomNumberGenerator.new()
 	rng.randomize()
-	var dicenumber = 1#rng.randi_range(1, 6)
+	var dicenumber =rng.randi_range(1, 6)
 	step = dicenumber
 	animated_sprite_2d.set_frame(dicenumber-1)
 	animated_sprite_2d.show()
 	move1()
 	print("buton pressed",dicenumber)
-	pass # Replace with function body.
+	
 	
 func start():
 	targetpos=Global.targetpos
 	var tween = create_tween()
 	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
 	
+	
 func move1():
 	walk=step*far
 	targetpos = path_follow_2d.progress + walk
 	milage = step+milage
 	milage=milage-backs
-	Global.milage=milage
-	var tween = create_tween()
-	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
-	print ("targetpos",targetpos,"step",step,"walk",walk,"milage",milage)
-	Global.player_progress = path_follow_2d.progress
-	Global.targetpos=targetpos
-	Global.player_progress=path_follow_2d.progress
+	
 	match milage:
-		3:
-			targetpos = 735
-		4:
-			targetpos = 525
-		9:
-			targetpos = 105
-		3:
-			targetpos = 875
-		7:
-			targetpos = 1015
-		16:
-			targetpos=1120
-		23:
-			targetpos=385
-		24:
-			targetpos=770
-		27:
-			targetpos=1155
-		35:
-			targetpos=210
+		#3:
+			#targetpos = 735
+		#4:
+			#targetpos = 525
+		#9:
+			#targetpos = 105
+		#3:
+			#targetpos = 875
+		#7:
+			#targetpos = 1015
+		#16:
+			#targetpos=1120
+		#23:
+			#targetpos=385
+		#24:
+			#targetpos=770
+		#27:
+			#targetpos=1155
+		#35:
+			#targetpos=210
 			#corection
 		4:
 			targetpos=145
@@ -171,8 +166,17 @@ func move1():
 			targetpos=630
 		23:
 			targetpos=810
-	tween.finished.connect(transition2)
+	var tween = create_tween()
+	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
+	print ("targetpos",targetpos,"step",step,"walk",walk,"milage",milage)
+	Global.milage=milage
+	Global.player_progress = path_follow_2d.progress
+	Global.targetpos=targetpos
+	Global.player_progress=path_follow_2d.progress
 	checkwin()
+	tween.finished.connect(transition2)
+	start()
+	
 	
 func starts():
 	walk=step*far
@@ -183,47 +187,53 @@ func starts():
 	Global.milage=milage
 	var tween = create_tween()
 	tween.tween_property(path_follow_2d, "progress", targetpos, speed)
-	#path_follow_2d.progress=Global.path_follow_2d
+	path_follow_2d.progress=Global.path_follow_2d
 	print ("targetpos",targetpos,"step",step,"walk",walk,"milage",milage)
-	#Global.targetpos=targetpos
-	#Global.path_follow_2d=path_follow_2d
+	Global.targetpos=targetpos
+	Global.path_follow_2d=path_follow_2d
 
 func  transition2():
 	match milage:
-		1,2,3:
+		3,7,9,16,17,20,23,26,27,35:
 			transition.play("transition")
 			timer.start()
-			#timer.timeout(move)
-			#move()
 func _on_timer_timeout():
 	move()
 func move():
 	match milage:
-		1:
-			Global.goto_scene("res://minigames/platformer/platformer.tscn")
 		3:
-			targetpos = 735
-			Global.goto_scene("res://minigames/runner/runner.tscn")
-		4:
-			targetpos = 525
-			Global.goto_scene("res://minigames/catcher/catcher game.tscn")
-		9:
-			targetpos = 105
-			Global.goto_scene("res://minigames/platformer/platformer.tscn")
-		3:
-			targetpos = 875
+			Global.goto_scene("res://minigames/quiz/chose scene.tscn")
+			
 		7:
 			targetpos = 1015
+			Global.goto_scene("res://minigames/runner/runner.tscn")
+			#Global.goto_scene("res://minigames/platformer/platformer.tscn")
+		9:
+			Global.goto_scene("res://minigames/quiz/chose scene - Copy.tscn")
+			#Global.goto_scene("res://minigames/platformer/platformer.tscn")
 		16:
+			Global.goto_scene("res://minigames/quiz/chose scene - Copy (2).tscn")
+			#Global.goto_scene("res://minigames/platformer/platformer.tscn")
 			targetpos=1120
+		17:
+			Global.goto_scene("res://minigames/avoid/avoid - Copy.tscn")
+		20:
+			Global.goto_scene("res://minigames/platformer/platformer - Copy (3).tscn")
 		23:
-			targetpos=385
-		24:
-			targetpos=770
+			Global.goto_scene("res://minigames/platformer/platformer.tscn")
+		24:	
+			Global.goto_scene("res://minigames/avoid/avoid.tscn")
+		26:
+			Global.goto_scene("res://minigames/catcher/catcher game - Copy.tscn")
 		27:
 			targetpos=1155
+			Global.goto_scene("res://minigames/catcher/catcher game.tscn")
+		34:
+			Global.goto_scene("res://minigames/quiz/chose scene - Copy (4).tscn")
 		35:
-			targetpos=210
+			Global.goto_scene("res://win.tscn")
+		36:
+			Global.goto_scene("res://win.tscn")
 			#corection
 		4:
 			targetpos=145
@@ -246,9 +256,11 @@ func move():
 	#currentpos += step
 	#print("Target position:", targetpos, "Step:", step, "Walk:", walk)
 	#checkwin()
+	checkwin()
 
 func checkwin():
-	if currentpos>=36:
+	if milage>=36:
+		Global.goto_scene("res://win.tscn")
 		print ("win")
 
 

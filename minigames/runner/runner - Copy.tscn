@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://minigames/runner/runner.gd" id="1_br6ij"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="1_xevpp"]
-[ext_resource type="PackedScene" uid="uid://50t6kiwg2n4s" path="res://food.tscn" id="2_yprss"]
+[ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="2_r0x64"]
 [ext_resource type="Texture2D" uid="uid://cvy538tsm05ru" path="res://asset/road 1 .png" id="4_c3ar0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j2ho8"]
@@ -15,12 +15,12 @@ distance = -638.678
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_br6ij")
-enemy_type = Array[PackedScene]([ExtResource("2_yprss")])
+enemy_type = Array[PackedScene]([ExtResource("2_r0x64")])
 score_n = 5
 targetpos = 530
-targetpos1 = 245
-milage = 15
-milage1 = 7
+targetpos1 = 105
+milage = 21
+milage1 = 4
 
 [node name="enemy spawner" type="Node" parent="."]
 

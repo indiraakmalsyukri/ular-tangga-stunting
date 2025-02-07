@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://50t6kiwg2n4s"]
+[gd_scene load_steps=5 format=3 uid="uid://50t6kiwg2n4s"]
 
 [ext_resource type="Script" path="res://droop.gd" id="1_br7t8"]
-[ext_resource type="Texture2D" uid="uid://cdnm6j7tm55pf" path="res://char/PNG/Double/tile_grey.png" id="2_uucps"]
+[ext_resource type="Texture2D" uid="uid://c3tw3ffcglbq3" path="res://asset/rb_60282.png" id="2_y07ir"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_751b8"]
+atlas = ExtResource("2_y07ir")
+region = Rect2(1011.19, 70.7531, 210.093, 702.905)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljjo3"]
 
@@ -10,7 +14,8 @@ script = ExtResource("1_br7t8")
 speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_uucps")
+scale = Vector2(0.25, 0.25)
+texture = SubResource("AtlasTexture_751b8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ljjo3")

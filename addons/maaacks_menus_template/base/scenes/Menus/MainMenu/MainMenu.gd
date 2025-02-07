@@ -12,10 +12,10 @@ var credits_scene
 var sub_menu
 
 func load_scene(scene_path : String):
-	SceneLoader.load_scene(scene_path)
+	Global.goto_scene(scene_path)
 
 func play_game():
-	SceneLoader.load_scene(game_scene_path)
+	Global.goto_scene(game_scene_path)
 
 func _open_sub_menu(menu : Control):
 	sub_menu = menu

@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1sk3nyyda74m"]
+
+[ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="1_lrdup"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_eos7u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8sscp"]
+font_size = 80
+
+[node name="win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.4, 0.2, 0.65098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_eos7u")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+modulate = Color(0.745098, 0.490196, 0.733333, 1)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 0.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HFlowContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VFlowContainer" type="VFlowContainer" parent="HFlowContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HFlowContainer/HBoxContainer/VFlowContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="player" parent="HFlowContainer/HBoxContainer/VFlowContainer/VBoxContainer" instance=ExtResource("1_lrdup")]
+position = Vector2(272.958, 260.294)
+
+[node name="Label" type="Label" parent="HFlowContainer/HBoxContainer/VFlowContainer/VBoxContainer"]
+layout_mode = 2
+text = "kamu menang"
+label_settings = SubResource("LabelSettings_8sscp")

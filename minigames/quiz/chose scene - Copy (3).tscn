@@ -12,10 +12,10 @@ anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
 script = ExtResource("1_l1hoh")
-targetpos = 735
-targetpos1 = 145
-milage = 21
-milage1 = 3
+targetpos = 31
+targetpos1 = 20
+milage = 1090
+milage1 = 700
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -51,8 +51,8 @@ alignment = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 100
-text = "pilih makanan yang 
-sehat"
+text = "apa fungsi dari 
+vaksinasi?"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -65,14 +65,14 @@ alignment = 1
 [node name="choice2" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_kl7gy")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "sayuran
+text = "memperkuat imun
 "
 answer = true
 
 [node name="choice" parent="Control/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_kl7gy")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "gorengan
+text = "mencari bubur kacang ijo
 "
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -95,7 +95,4 @@ mouse_filter = 2
 texture = SubResource("CanvasTexture_nwdho")
 expand_mode = 2
 
-[connection signal="correct" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice2" to="." method="_on_choice_2_correct"]
 [connection signal="incorrect" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice2" to="." method="_on_choice_2_incorrect"]
-[connection signal="correct" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice" to="." method="_on_choice_correct"]
-[connection signal="incorrect" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice" to="." method="_on_choice_incorrect"]

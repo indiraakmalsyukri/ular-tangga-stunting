@@ -12,11 +12,7 @@ distance = -638.678
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_n3k4v")
 enemy_type = Array[PackedScene]([ExtResource("2_lbq7b")])
-score_n = 4
-milage = 24
-milage1 = 10
-targetpos = 845
-targetpos1 = 350
+milage = 21
 
 [node name="enemy spawner" type="Node" parent="."]
 
@@ -49,16 +45,7 @@ texture = ExtResource("4_mc80p")
 wait_time = 10.0
 autostart = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_direction = 1
+[node name="Label" type="Label" parent="."]
 offset_right = 40.0
-offset_bottom = 50.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
+offset_bottom = 23.0
+text = "0"

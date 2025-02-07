@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8qkmm628jxf5"]
 
 [ext_resource type="Script" path="res://droop.gd" id="1_yowsw"]
-[ext_resource type="Texture2D" uid="uid://c1eqf1cse1hch" path="res://addons/maaacks_menus_template/base/assets/images/addition_symbol.png" id="2_i21xg"]
+[ext_resource type="Texture2D" uid="uid://chtedmbqsm3u" path="res://asset/poo-6783251_1280.png" id="2_dgcu1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xbykn"]
 
@@ -11,7 +11,8 @@ script = ExtResource("1_yowsw")
 speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_i21xg")
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_dgcu1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xbykn")

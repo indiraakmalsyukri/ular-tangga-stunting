@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://copa2x46ep4ve"]
+[gd_scene load_steps=21 format=3 uid="uid://copa2x46ep4ve"]
 
 [ext_resource type="PackedScene" uid="uid://bx25kyriqgaq5" path="res://test/scenes/Menus/MainMenu/MainMenu.tscn" id="1_0tp6w"]
 [ext_resource type="Script" path="res://test/scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_28ouy"]
+[ext_resource type="Texture2D" uid="uid://cetbqwgtlsb72" path="res://asset/Snake.png" id="4_btnp5"]
+[ext_resource type="SpriteFrames" uid="uid://1ghwaeyxxfpw" path="res://asset/snake.tres" id="4_t03jc"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -323,8 +325,17 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
+[sub_resource type="Curve2D" id="Curve2D_rl1r3"]
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_hjhj7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rp7h"]
+atlas = ExtResource("4_btnp5")
+region = Rect2(0, 320.5, 14.1094, 16.0654)
+
 [node name="MainMenu" instance=ExtResource("1_0tp6w")]
 script = ExtResource("2_28ouy")
+game_scene_path = "res://map.tscn"
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -350,3 +361,30 @@ modulate = Color(1, 1, 1, 0)
 
 [node name="MenuButtons" parent="MenuContainer/VBoxContainer/MenuMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
+
+[node name="Path2D" type="Path2D" parent="." index="10"]
+curve = SubResource("Curve2D_rl1r3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="0"]
+position = Vector2(108, 35)
+rotation = 1.48766
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D" index="0"]
+position = Vector2(37, 30)
+scale = Vector2(5.625, 4.75)
+sprite_frames = ExtResource("4_t03jc")
+animation = &"new_animation"
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Path2D/PathFollow2D" index="1"]
+position = Vector2(24.3323, -2.98964)
+modification_stack = SubResource("SkeletonModificationStack2D_hjhj7")
+
+[node name="Bone2D" type="Bone2D" parent="Path2D/PathFollow2D/Skeleton2D" index="0"]
+scale = Vector2(0, 0)
+
+[node name="Node2D" type="Node2D" parent="Path2D/PathFollow2D" index="2"]
+
+[node name="head" type="Polygon2D" parent="Path2D/PathFollow2D/Node2D" index="0"]
+z_index = 1
+scale = Vector2(1, 1)
+texture = SubResource("AtlasTexture_6rp7h")

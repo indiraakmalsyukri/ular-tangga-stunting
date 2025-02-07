@@ -1,8 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqnq7f4g8eu3y"]
+[gd_scene load_steps=2 format=3 uid="uid://bqnq7f4g8eu3y"]
 
-[ext_resource type="Script" path="res://player/script/PlayerSpawner.gd" id="1_fb1ko"]
-[ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="2_hmjdy"]
+[ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="2_no66u"]
 
 [node name="PlayerSpawner" type="Node2D"]
-script = ExtResource("1_fb1ko")
-Player = ExtResource("2_hmjdy")
+
+[node name="player" parent="." instance=ExtResource("2_no66u")]

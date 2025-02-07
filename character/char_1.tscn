@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbtobefg5cvxw"]
+[gd_scene load_steps=3 format=3 uid="uid://cbtobefg5cvxw"]
 
+[ext_resource type="PackedScene" uid="uid://l5rt5t51snor" path="res://PlayerAnim.tscn" id="2_0kcnt"]
 [ext_resource type="Texture2D" uid="uid://2ksfc7wohs67" path="res://char/PNG/Double/blue_body_circle.png" id="2_pbdgp"]
 
 [node name="char 1" type="Node2D"]
@@ -7,3 +8,5 @@
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.375, 0.35)
 texture = ExtResource("2_pbdgp")
+
+[node name="AnimationTree" parent="." instance=ExtResource("2_0kcnt")]

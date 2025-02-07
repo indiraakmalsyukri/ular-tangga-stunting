@@ -2,21 +2,18 @@
 
 [ext_resource type="Script" path="res://minigames/catcher/catcher game.gd" id="1_ad6di"]
 [ext_resource type="PackedScene" uid="uid://50t6kiwg2n4s" path="res://food.tscn" id="2_na3fb"]
-[ext_resource type="PackedScene" uid="uid://dcsllkmenf8yx" path="res://food_2.tscn" id="3_5jpsv"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="3_bwhvl"]
+[ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="4_0u1m7"]
 [ext_resource type="Texture2D" uid="uid://dcvxtms4hte5q" path="res://asset/brick-wall-background-cartoon-drawing-artwork-vector_893055-15882-ezgif.com-avif-to-jpg-converter.jpg" id="5_0gagx"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(69.2964, 578.413)
 script = ExtResource("1_ad6di")
-enemy_type = Array[PackedScene]([ExtResource("2_na3fb"), ExtResource("3_5jpsv")])
+enemy_type = Array[PackedScene]([ExtResource("2_na3fb"), ExtResource("4_0u1m7")])
 speed = 100
 scroll_speed = 0
-score_n = 10
-targetpos = 1160
-targetpos1 = 915
-milage = 33
-milage1 = 26
+score_n = 2
+targetpos = 400
 
 [node name="enemy spawner" type="Node" parent="."]
 
