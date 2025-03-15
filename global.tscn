@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://di43pifvmlm13"]
+[gd_scene load_steps=4 format=3 uid="uid://di43pifvmlm13"]
 
 [ext_resource type="Script" path="res://global.gd" id="1_tio54"]
 [ext_resource type="PackedScene" uid="uid://bpvccuhddbpjc" path="res://transition.tscn" id="2_egd01"]
+[ext_resource type="AudioStream" uid="uid://cwpb86cff0l6" path="res://test/scenes/Menus/MainMenu/2019-08-25_-_8bit-Smooth_Presentation_-_David_Fesliyan.mp3" id="3_3vyqe"]
 
 [node name="global" type="Node2D" groups=["global"]]
 script = ExtResource("1_tio54")
@@ -9,5 +10,10 @@ script = ExtResource("1_tio54")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 
 [node name="transition" parent="." instance=ExtResource("2_egd01")]
+
+[node name="backgound_music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_3vyqe")
+autoplay = true
 
 [editable path="transition"]

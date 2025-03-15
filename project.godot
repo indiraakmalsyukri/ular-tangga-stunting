@@ -23,6 +23,12 @@ SceneLoader="*res://addons/maaacks_menus_template/base/scenes/Autoloads/SceneLoa
 ProjectMusicController="*res://addons/maaacks_menus_template/base/scenes/Autoloads/ProjectMusicController.tscn"
 ProjectUISoundController="*res://addons/maaacks_menus_template/base/scenes/Autoloads/ProjectUISoundController.tscn"
 Global="*res://global.gd"
+BackgroundMusic="*res://background music.tscn"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -45,7 +51,16 @@ jump={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [maaacks_menus_template]
 
 disable_plugin_dialogues=true
 copy_path="res://test"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

@@ -16,12 +16,12 @@ func _on_collectibles_hit():
 	score += 1
 	label.text = "score: %s" % score
 	print(score)
-	if score == 4:
+	if score == score_n:
 		back_scene()
 func on_timer_timeout():
 	back_scene()
 func back_scene():
-	if score == 4:
+	if score == score_n:
 		Global.targetpos =targetpos
 		Global.milage = milage
 		Global.goto_scene("res://map.tscn")

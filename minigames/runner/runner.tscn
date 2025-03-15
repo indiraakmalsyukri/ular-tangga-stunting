@@ -1,13 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmlq2ecelvnsc"]
+[gd_scene load_steps=9 format=3 uid="uid://bmlq2ecelvnsc"]
 
 [ext_resource type="Script" path="res://minigames/runner/runner.gd" id="1_br6ij"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="1_xevpp"]
 [ext_resource type="PackedScene" uid="uid://50t6kiwg2n4s" path="res://food.tscn" id="2_yprss"]
 [ext_resource type="Texture2D" uid="uid://cvy538tsm05ru" path="res://asset/road 1 .png" id="4_c3ar0"]
+[ext_resource type="PackedScene" uid="uid://cnsjj0gnbsypx" path="res://control.tscn" id="5_wslhv"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j2ho8"]
-normal = Vector2(0.0204223, -0.999791)
-distance = -638.678
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtwdi"]
+size = Vector2(27.2198, 102.049)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0unmm"]
 
@@ -37,7 +37,12 @@ JUMP_VELOCITY = 1000
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_j2ho8")
+position = Vector2(-20.0913, 596.896)
+shape = SubResource("RectangleShape2D_vtwdi")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1171.06, 592.401)
+shape = SubResource("RectangleShape2D_vtwdi")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -68,3 +73,16 @@ label_settings = SubResource("LabelSettings_0unmm")
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_533ck")
+
+[node name="control" parent="." instance=ExtResource("5_wslhv")]
+offset_left = 954.544
+offset_top = 445.0
+offset_right = 954.544
+offset_bottom = 445.0
+
+[node name="jump" parent="control/HBoxContainer" index="0"]
+visible = false
+
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+
+[editable path="control"]

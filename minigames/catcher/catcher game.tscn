@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr7ic0dbh4gl4"]
+[gd_scene load_steps=9 format=3 uid="uid://dr7ic0dbh4gl4"]
 
 [ext_resource type="Script" path="res://minigames/catcher/catcher game.gd" id="1_ad6di"]
 [ext_resource type="PackedScene" uid="uid://50t6kiwg2n4s" path="res://food.tscn" id="2_na3fb"]
 [ext_resource type="PackedScene" uid="uid://dcsllkmenf8yx" path="res://food_2.tscn" id="3_5jpsv"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="3_bwhvl"]
 [ext_resource type="Texture2D" uid="uid://dcvxtms4hte5q" path="res://asset/brick-wall-background-cartoon-drawing-artwork-vector_893055-15882-ezgif.com-avif-to-jpg-converter.jpg" id="5_0gagx"]
+[ext_resource type="PackedScene" uid="uid://cnsjj0gnbsypx" path="res://control.tscn" id="6_l0dqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78qob"]
+size = Vector2(19.5904, 137.331)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6673l"]
+size = Vector2(26.8968, 102.049)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(69.2964, 578.413)
@@ -34,7 +41,7 @@ speed = 1000
 motion_mirroring = Vector2(0, 960)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(586.863, 186.468)
+position = Vector2(571.727, 184.786)
 scale = Vector2(1.38743, 1.09152)
 texture = ExtResource("5_0gagx")
 
@@ -59,5 +66,26 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Node2D/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="control" parent="." instance=ExtResource("6_l0dqn")]
+offset_left = 831.403
+offset_top = -166.612
+offset_right = 831.403
+offset_bottom = -166.612
+
+[node name="jump" parent="control/HBoxContainer" index="0"]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-79.5689, -16.9232)
+shape = SubResource("RectangleShape2D_78qob")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1094.72, -0.447571)
+shape = SubResource("RectangleShape2D_6673l")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+
+[editable path="control"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://l4vlucmsfyvt"]
+[gd_scene load_steps=22 format=3 uid="uid://bk2gkr5ywt5ww"]
 
 [ext_resource type="Script" path="res://minigames/platformer/platformer.gd" id="1_l1a8q"]
 [ext_resource type="PackedScene" uid="uid://dn7om3d4cxokr" path="res://collectibles.tscn" id="3_kn4in"]

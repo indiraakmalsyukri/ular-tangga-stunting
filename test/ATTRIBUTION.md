@@ -2,17 +2,52 @@
 ## Collaborators
 
 ### Role
-Person 1  
-Person 2  
+indira akmal syukri
 [Person w/ Link]()  
 
 
 ## Sourced / Unaffiliated
-### Asset Type
-#### Use Case
+### image asset
+#### background
+Author: [Name]()  
+Source: [https://perchance.org/ai-text-to-image-generator]()  
+License: [License]()
+
+#### character
+Author: [kenney]()  
+Source: [www.kenney.nl]()  
+License: [http://creativecommons.org/publicdomain/zero/1.0/]()
+
+#### map sprite
+Author: [kenney]()  
+Source: [www.kenney.nl]()  
+License: [http://creativecommons.org/publicdomain/zero/1.0/]()
+
+
+#### papan ular tangga
 Author: [Name]()  
 Source: [Domain : webpage.html]()  
 License: [License]()
+
+
+#### makanan
+Author: [byrawpixel.com]()  
+Source: [<a href="https://www.freepik.com/free-vector/various-fresh-organic-vegetables-vector-pack_3428185.htm#fromView=keyword&page=1&position=2&uuid=3f30c565-eae1-4a1d-867d-6baec7e31048&query=Vegetable+Emoji">Image byrawpixel.com on Freepik</a>]()  
+License: [License]()
+
+
+Sourced / Unaffiliated## 
+### sound
+#### music
+Author: [8 Bit Presentation - by David Fesliyan]()  
+Source: [https://www.fesliyanstudios.com/royalty-free-music/downloads-c/8-bit-music/6]()  
+License: [http://creativecommons.org/publicdomain/zero/1.0]()
+
+
+#### Use Case
+Author: [kenney]()  
+Source: [www.kenney.nl]()  
+License: [http://creativecommons.org/publicdomain/zero/1.0/]()
 
 
 ## Tools

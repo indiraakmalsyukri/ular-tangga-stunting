@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bx4gtf5qs02uw"]
+[gd_scene load_steps=19 format=3 uid="uid://bx4gtf5qs02uw"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6mf57"]
 [ext_resource type="Texture2D" uid="uid://deh50l0ovg62c" path="res://icon.svg" id="1_lxoxi"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bdtunfiybyoeo" path="res://char/PNG/Double/facial_part_eye_closed_up.png" id="9_nuv3p"]
 [ext_resource type="Texture2D" uid="uid://ie6l1hel1a1i" path="res://char/PNG/Double/facial_part_mouth_sad.png" id="10_bqv4w"]
 [ext_resource type="Texture2D" uid="uid://b2gun06frk2jh" path="res://char/PNG/Double/facial_part_mouth_smirk.png" id="11_cenrk"]
+[ext_resource type="AudioStream" uid="uid://dbamp2bl2vjav" path="res://asset/Audio/impactGeneric_light_000.ogg" id="12_f4qua"]
 
 [sub_resource type="Curve2D" id="Curve2D_krf73"]
 _data = {
@@ -142,3 +143,6 @@ replication_config = SubResource("SceneReplicationConfig_jtneb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-0.500002, -9.53674e-06)
+
+[node name="jump sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_f4qua")

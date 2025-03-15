@@ -11,13 +11,14 @@ extends Node2D
 @export var milage1 :int
 @export var targetpos:int
 @export var targetpos1:int
-@onready var label_2 = $HBoxContainer/VBoxContainer/Label2
 @onready var label = $HBoxContainer/VBoxContainer/Label
+@onready var label_2 = $HBoxContainer/VBoxContainer/Label2
+
 const DROOP = preload("res://droop.tscn")
 var score=0
 func _ready():
 	timer.timeout.connect(_on_timer_timeout)
-	label.text = "score: %s" % score_n
+	label.text = "nyawa: %s" % score_n
 	#label_2.text = "hidup yang tersisa : %s" % score_n
 	#enemy_spawner.hit.connect(_on_droop_hit)
 func _process(delta):
@@ -31,7 +32,7 @@ func _on_timer_timeout():
 	enemy_spawner.add_child(e)
 func _on_droop_hit():
 	score_n -= 1
-	label.text = "score: %s" % score_n
+	label.text = "Nyawa: %s" % score_n
 	print(score)
 	if score_n==-1:
 		back_scene()

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpcgch07yvg8"]
+
+[ext_resource type="AudioStream" uid="uid://cwpb86cff0l6" path="res://test/scenes/Menus/MainMenu/2019-08-25_-_8bit-Smooth_Presentation_-_David_Fesliyan.mp3" id="1_n6x7p"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_n6x7p")
+autoplay = true

@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://xdixv1gm3iek"]
+[gd_scene load_steps=7 format=3 uid="uid://xdixv1gm3iek"]
 
 [ext_resource type="Script" path="res://minigames/avoid/avoid.gd" id="1_n3k4v"]
 [ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="2_lbq7b"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="3_m7h4x"]
 [ext_resource type="Texture2D" uid="uid://cvy538tsm05ru" path="res://asset/road 1 .png" id="4_mc80p"]
+[ext_resource type="PackedScene" uid="uid://cnsjj0gnbsypx" path="res://control.tscn" id="5_1jjl2"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j2ho8"]
-normal = Vector2(0.0204223, -0.999791)
-distance = -638.678
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ahd8"]
+size = Vector2(58.1145, 143.793)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_n3k4v")
@@ -16,7 +16,7 @@ speed = 600
 score_n = 5
 milage = 29
 milage1 = 17
-targetpos = 1020
+targetpos = 985
 targetpos1 = 605
 
 [node name="enemy spawner" type="Node" parent="."]
@@ -31,28 +31,48 @@ motion_mode = 0
 speed = 1000
 JUMP_VELOCITY = 1000
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_j2ho8")
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/StaticBody2D"]
+position = Vector2(-36.1371, 570.042)
+shape = SubResource("RectangleShape2D_5ahd8")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="AnimatedSprite2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="AnimatedSprite2D/AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/AnimatedSprite2D/StaticBody2D"]
+position = Vector2(1184, 567.519)
+shape = SubResource("RectangleShape2D_5ahd8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enabled = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(0, 960)
+motion_mirroring = Vector2(960, 960)
 
 [node name="Road1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(572, 487.25)
 scale = Vector2(1.46096, 0.856189)
 texture = ExtResource("4_mc80p")
 
-[node name="Timer2" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
+[node name="control" parent="." instance=ExtResource("5_1jjl2")]
+offset_left = 959.006
+offset_top = 413.576
+offset_right = 959.006
+offset_bottom = 413.576
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 50.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -64,3 +84,7 @@ text = "0"
 [node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "0"
+
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+
+[editable path="control"]

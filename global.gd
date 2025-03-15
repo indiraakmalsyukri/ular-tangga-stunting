@@ -7,6 +7,8 @@ var milage=0
 var targetpos=0
 var path_follow_2d: float
 var current_scene = null
+
+
 # Called when the node enters the scene tree for the first time.
 @onready var mpp: MPPlayer = get_parent() as MPPlayer
 var player_progress = 0.0
@@ -14,6 +16,7 @@ var player_ready_states: Array = [false, false, false, false]
 func _ready():
 	# Listen to MultiPlay Player Signals
 	#connect("post", Callable(self, "milage1"))
+	
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 	if mpp:

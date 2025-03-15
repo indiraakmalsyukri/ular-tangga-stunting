@@ -12,7 +12,10 @@ anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
 script = ExtResource("1_l1hoh")
-targetpos = 30
+targetpos = 1170
+targetpos1 = 500
+milage = 34
+milage1 = 14
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -91,4 +94,7 @@ mouse_filter = 2
 texture = SubResource("CanvasTexture_nwdho")
 expand_mode = 2
 
+[connection signal="correct" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice2" to="." method="_on_choice_2_correct"]
 [connection signal="incorrect" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice2" to="." method="_on_choice_2_incorrect"]
+[connection signal="correct" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice" to="." method="_on_choice_correct"]
+[connection signal="incorrect" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice" to="." method="_on_choice_incorrect"]

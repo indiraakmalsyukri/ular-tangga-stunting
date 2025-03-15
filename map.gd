@@ -9,15 +9,19 @@ signal post(milage)
 @onready var marker_2d = $NavigationAgent2D/Path2D/PathFollow2D/Marker2D
 @onready var path_follow_2d = $NavigationAgent2D/Path2D/PathFollow2D
 @onready var path_2d = $NavigationAgent2D/Path2D
-@onready var player = $NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D/player
+@onready var player = $NavigationAgent2D/Path2D/PathFollow2D/Node2D/PlayerSpawner/player
 @onready var animated_sprite_2d = $Control/Container/AnimatedSprite2D
 #var player_scene = preload("res://player.tscn")
 @export var minigame:Array[PackedScene]=[]
+@onready var dice_shuffle = $Control/Container/dice_shuffle
+@onready var timer_2 = $Timer2
+@onready var label = $"Files1513revisi02UlarTanggaStuntingPages-to-jpg-0001/Control2/Container/Label"
+
 #@onready var multi_play_core = "res://multi_play_core.tscn"
 #@onready var mpp: MPPlayer = get_node("res://multi_play_core.tscn")
 #@onready var mpp: MPPlayer = get_parent()
 @export var far : int
-@onready var multiplayer_synchronizer = $NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D/player
+#@onready var multiplayer_synchronizer = $NavigationAgent2D/Path2D/PathFollow2D/CharacterBody2D/player
 var currentpos = 0
 var targetpos : int
 var speed = 1
@@ -108,17 +112,23 @@ func _on_player_ready():
 
 func _on_dadu_pressed():
 	animated_sprite_2d.play("dice")
-	animated_sprite_2d.stop()
-	animated_sprite_2d.hide()
+	
+	#animated_sprite_2d.hide()
+	dice_shuffle.play()
+	
+	
+	start_timer2()
+func start_timer2():
+	timer_2.start()
+func on_timer_2_timeout():
 	RandomNumberGenerator.new()
 	rng.randomize()
-	var dicenumber =rng.randi_range(1, 6)
+	var dicenumber = 1#rng.randi_range(1, 6)
 	step = dicenumber
+	animated_sprite_2d.stop()
 	animated_sprite_2d.set_frame(dicenumber-1)
-	animated_sprite_2d.show()
 	move1()
 	print("buton pressed",dicenumber)
-	
 	
 func start():
 	targetpos=Global.targetpos
@@ -133,6 +143,80 @@ func move1():
 	milage=milage-backs
 	
 	match milage:
+		0:
+			Label.text="Cegah stunting itu penting."
+		1:
+			label.text="Jumlah anak stunting di Indonesia tertinggi di Asia Tenggara"
+		2:
+			label.text="Pentingnya Gizi-Nasi, lauk, buah, dan sayur bergizi untuk anak sekolah."
+		3:
+			label.text="Dampak Gizi Buruk - Anak akan gampang sakit"
+		4:
+			label.text="Remaja Putri & TTD - Remaja putri harus rutin mengonsumsi Tablet Tambah Darah (TTD)."
+		5:
+			Label.text="kesehatan Anak - Anak akan gampang sakit jika tidak mendapat nutrisi cukup."
+		6:
+			label.text="Diare - Melakukan pencegahan dan pengobatan diare."
+		7:
+			label.text="Cuci Tangan - Cuci tangan pakai sabun dengan air mengalir."
+		8:
+			label.text="Kesehatan Remaja - Kurang pengetahuan tentang kesehatan reproduksi remaja."
+		9:
+			Label.text="Dampak Kurang Gizi - Tubuh menjadi lemas dan tidak enak."
+		10:
+			label.text="Air Bersih - Menggunakan air bersih untuk minum, masak, dan mandi."
+		11:
+			label.text="Air Bersih - Menggunakan air bersih sangat penting untuk kesehatan."
+		12:
+			label.text="Makanan Bergizi - Biasakan makan makanan bergizi."
+		13:
+			Label.text="Kebersihan Tangan - Jangan lupa biasakan cuci tangan pakai sabun (CTPS)."
+		14:
+			label.text="Gizi Buruk - Badan lemas dan mudah terserang penyakit."
+		15:
+			label.text="Cuci Tangan - Ada 6 langkah cuci tangan pakai sabun agar menghilangkan kuman."
+		16:
+			label.text="Dampak Tidak Cuci Tangan - Tidak cuci tangan pakai sabun akan meningkatkan risiko penyakit."
+		17:
+			Label.text="Jamban Sehat - Gunakan selalu jamban sehat."
+		18:
+			label.text="Obat Cacing - Minum obat cacing secara rutin."
+		19:
+			label.text="Olahraga - Rajin olahraga."
+		20:
+			label.text="Imunisasi - Melakukan imunisasi saat Bulan Imunisasi Anak Sekolah (BIAS)."
+		21:
+			Label.text="Manfaat Gizi - Lebih sehat, anak cerdas"
+		22:
+			label.text="Penyakit Akibat Kotoran - Menjadi sumber penyakit."
+		23:
+			label.text="Tablet Tambah Darah (TTD) - Remaja putri tidak mau mengonsumsi Tablet Tambah Darah (TTD)."
+		24:
+			label.text="BAB Sembarangan - Buang Air Besar (BAB) sembarangan."
+		25:
+			Label.text="Dampak Kurang Gizi - Tubuh menjadi lemas dan konsentrasi berkurang."
+		26:
+			label.text="Gizi untuk Anak - Pemenuhan kebutuhan gizi."
+		27:
+			label.text="Imunisasi Lengkap - Tidak mendapat imunisasi lengkap."
+		28:
+			label.text="Pentingnya Kesehatan - Dapat berbagi pengetahuan tentang kesehatan dan gizi."
+		29:
+			Label.text="Pentingnya Gizi - Memberikan pengetahuan tentang kesehatan dan gizi."
+		30:
+			label.text="Garam Beryodium - Mengonsumsi garam beryodium."
+		31:
+			label.text="Perlindungan Penyakit - Melindungi dari segala macam penyakit."
+		32:
+			label.text="Isi Piringku - Makan makanan bergizi setiap hari."
+		33:
+			label.text="Anak Sehat - Anak tumbuh sehat dan cerdas."
+		34:
+			label.text="Buah & Sayur - Tidak mengonsumsi buah dan sayur setiap hari."
+		35:
+			label.text="Bebas Stunting - Menuju Indonesia bebas stunting, sukses!"
+		36:
+			label.text="tests"
 		#3:
 			#targetpos = 735
 		#4:
@@ -194,7 +278,7 @@ func starts():
 
 func  transition2():
 	match milage:
-		3,7,9,16,17,20,23,26,27,35:
+		3,7,9,12,16,17,20,23,24,26,27,34,35:
 			transition.play("transition")
 			timer.start()
 func _on_timer_timeout():
@@ -221,13 +305,13 @@ func move():
 			Global.goto_scene("res://minigames/platformer/platformer - Copy (3).tscn")
 		23:
 			Global.goto_scene("res://minigames/platformer/platformer.tscn")
-		24:	
+		24:
 			Global.goto_scene("res://minigames/avoid/avoid.tscn")
 		26:
-			Global.goto_scene("res://minigames/catcher/catcher game - Copy.tscn")
+			Global.goto_scene("res://minigames/catcher/catcher game.tscn")
 		27:
 			targetpos=1155
-			Global.goto_scene("res://minigames/catcher/catcher game.tscn")
+			Global.goto_scene("res://minigames/catcher/catcher game - Copy.tscn")
 		34:
 			Global.goto_scene("res://minigames/quiz/chose scene - Copy (4).tscn")
 		35:

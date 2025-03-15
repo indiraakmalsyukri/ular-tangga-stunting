@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://xdixv1gm3iek"]
+[gd_scene load_steps=8 format=3 uid="uid://j667e0ubrphb"]
 
 [ext_resource type="Script" path="res://minigames/avoid/avoid.gd" id="1_n3k4v"]
 [ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="2_lbq7b"]
@@ -8,6 +8,12 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j2ho8"]
 normal = Vector2(0.0204223, -0.999791)
 distance = -638.678
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfj1a"]
+size = Vector2(20, 381.879)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5y6sf"]
+size = Vector2(22.8516, 242.899)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_n3k4v")
@@ -49,3 +55,13 @@ autostart = true
 offset_right = 40.0
 offset_bottom = 23.0
 text = "0"
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-12.4726, 451.773)
+shape = SubResource("RectangleShape2D_nfj1a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1161.38, 508.79)
+shape = SubResource("RectangleShape2D_5y6sf")

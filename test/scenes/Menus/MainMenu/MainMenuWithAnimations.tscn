@@ -1,9 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://copa2x46ep4ve"]
+[gd_scene load_steps=33 format=3 uid="uid://copa2x46ep4ve"]
 
 [ext_resource type="PackedScene" uid="uid://bx25kyriqgaq5" path="res://test/scenes/Menus/MainMenu/MainMenu.tscn" id="1_0tp6w"]
 [ext_resource type="Script" path="res://test/scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_28ouy"]
-[ext_resource type="Texture2D" uid="uid://cetbqwgtlsb72" path="res://asset/Snake.png" id="4_btnp5"]
-[ext_resource type="SpriteFrames" uid="uid://1ghwaeyxxfpw" path="res://asset/snake.tres" id="4_t03jc"]
+[ext_resource type="Texture2D" uid="uid://wcp0ahd8gmr8" path="res://asset/snake/row-4-column-1.png" id="3_1ahhh"]
+[ext_resource type="AudioStream" uid="uid://da7nxfhp4enoa" path="res://asset/Audio/dieGrab1.ogg" id="3_1twho"]
+[ext_resource type="Script" path="res://test/scenes/Menus/MainMenu/running snake.gd" id="3_qgtlx"]
+[ext_resource type="Texture2D" uid="uid://dj5equ28fvpb7" path="res://asset/background/background  start.jpg" id="3_ttwte"]
+[ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="4_ae1va"]
+[ext_resource type="Texture2D" uid="uid://b862bhi3n13a7" path="res://asset/snake/row-4-column-2.png" id="5_pqcgy"]
+[ext_resource type="Texture2D" uid="uid://b1rdhlsvsbdeq" path="res://asset/snake/row-4-column-3.png" id="6_jiot4"]
+[ext_resource type="Texture2D" uid="uid://cbwjempl4rsb5" path="res://asset/snake/row-4-column-4.png" id="7_h31vm"]
+[ext_resource type="Texture2D" uid="uid://cy2go7wemy45y" path="res://asset/snake/row-4-column-5.png" id="8_g21u4"]
+[ext_resource type="Texture2D" uid="uid://b1xkmpmu0bgdt" path="res://asset/snake/row-4-column-6.png" id="9_dswkl"]
+[ext_resource type="Texture2D" uid="uid://vot450ynqjxy" path="res://asset/snake/row-4-column-7.png" id="10_lxmlh"]
+[ext_resource type="Texture2D" uid="uid://lt2bh2t1ui20" path="res://asset/snake/row-4-column-8.png" id="11_gsfkf"]
+[ext_resource type="Texture2D" uid="uid://cetbqwgtlsb72" path="res://asset/Snake.png" id="13_ku6lj"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -326,16 +337,57 @@ transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "Open
 graph_offset = Vector2(-180.277, 49)
 
 [sub_resource type="Curve2D" id="Curve2D_rl1r3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 105, 580, 0, 0, 0, 0, 1016, 583, 0, 0, 0, 0, 1016, 138, 0, 0, 0, 0, 105, 139, 0, 0, 0, 0, 105, 580)
+}
+point_count = 5
 
-[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_hjhj7"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_uli40"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1ahhh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pqcgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jiot4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h31vm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g21u4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dswkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lxmlh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gsfkf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6rp7h"]
-atlas = ExtResource("4_btnp5")
-region = Rect2(0, 320.5, 14.1094, 16.0654)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh35e"]
+atlas = ExtResource("13_ku6lj")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx7cx"]
+atlas = ExtResource("13_ku6lj")
+region = Rect2(129, 34, 14, 14)
 
 [node name="MainMenu" instance=ExtResource("1_0tp6w")]
 script = ExtResource("2_28ouy")
 game_scene_path = "res://map.tscn"
+
+[node name="UISoundController" parent="." index="0"]
+button_pressed = ExtResource("3_1twho")
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -343,12 +395,13 @@ libraries = {
 }
 
 [node name="MenuAnimationTree" type="AnimationTree" parent="." index="2"]
-libraries = {
-"": SubResource("AnimationLibrary_2kqig")
-}
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
+
+[node name="BackgroundTextureRect" parent="." index="4"]
+modulate = Color(1, 1, 1, 1)
+texture = ExtResource("3_ttwte")
 
 [node name="VersionNameLabel" parent="." index="5"]
 modulate = Color(1, 1, 1, 0)
@@ -362,29 +415,73 @@ modulate = Color(1, 1, 1, 0)
 [node name="MenuButtons" parent="MenuContainer/VBoxContainer/MenuMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
+[node name="OptionsButton" parent="MenuContainer/VBoxContainer/MenuMargin/MenuButtons" index="1"]
+visible = false
+
 [node name="Path2D" type="Path2D" parent="." index="10"]
 curve = SubResource("Curve2D_rl1r3")
+script = ExtResource("3_qgtlx")
+speed = 50
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="0"]
-position = Vector2(108, 35)
-rotation = 1.48766
+position = Vector2(404.998, 580.988)
+rotation = 0.00329307
+progress = 300.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D" index="0"]
-position = Vector2(37, 30)
-scale = Vector2(5.625, 4.75)
-sprite_frames = ExtResource("4_t03jc")
-animation = &"new_animation"
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D" index="0"]
+rotation = 1.5708
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_uli40")
+frame_progress = 0.372461
 
-[node name="Skeleton2D" type="Skeleton2D" parent="Path2D/PathFollow2D" index="1"]
-position = Vector2(24.3323, -2.98964)
-modification_stack = SubResource("SkeletonModificationStack2D_hjhj7")
+[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D" index="1"]
+position = Vector2(504.998, 581.317)
+rotation = 0.00658615
+progress = 400.0
+rotates = false
 
-[node name="Bone2D" type="Bone2D" parent="Path2D/PathFollow2D/Skeleton2D" index="0"]
-scale = Vector2(0, 0)
+[node name="player" parent="Path2D/PathFollow2D2" index="0" instance=ExtResource("4_ae1va")]
 
-[node name="Node2D" type="Node2D" parent="Path2D/PathFollow2D" index="2"]
+[node name="PathFollow2D3" type="PathFollow2D" parent="Path2D" index="2"]
+position = Vector2(344.997, 580.79)
+rotation = 0.00658615
+progress = 240.0
+rotates = false
 
-[node name="head" type="Polygon2D" parent="Path2D/PathFollow2D/Node2D" index="0"]
-z_index = 1
-scale = Vector2(1, 1)
-texture = SubResource("AtlasTexture_6rp7h")
+[node name="middle" type="Sprite2D" parent="Path2D/PathFollow2D3" index="0"]
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_qh35e")
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Path2D" index="3"]
+position = Vector2(284.999, 580.593)
+rotation = 0.00658615
+progress = 180.0
+rotates = false
+
+[node name="middle" type="Sprite2D" parent="Path2D/PathFollow2D4" index="0"]
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_qh35e")
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Path2D" index="4"]
+position = Vector2(224.995, 580.395)
+rotation = 0.00658615
+progress = 120.0
+rotates = false
+
+[node name="middle" type="Sprite2D" parent="Path2D/PathFollow2D5" index="0"]
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_qh35e")
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Path2D" index="5"]
+position = Vector2(169.996, 580.214)
+rotation = 0.00658615
+progress = 65.0
+rotates = false
+
+[node name="middle" type="Sprite2D" parent="Path2D/PathFollow2D6" index="0"]
+rotation = -1.5708
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_xx7cx")

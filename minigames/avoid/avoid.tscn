@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://xdixv1gm3iek"]
+[gd_scene load_steps=7 format=3 uid="uid://xdixv1gm3iek"]
 
 [ext_resource type="Script" path="res://minigames/avoid/avoid.gd" id="1_n3k4v"]
 [ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="2_lbq7b"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="3_m7h4x"]
 [ext_resource type="Texture2D" uid="uid://cvy538tsm05ru" path="res://asset/road 1 .png" id="4_mc80p"]
+[ext_resource type="PackedScene" uid="uid://cnsjj0gnbsypx" path="res://control.tscn" id="5_m243d"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j2ho8"]
-normal = Vector2(0.0204223, -0.999791)
-distance = -638.678
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndupk"]
+size = Vector2(20, 163.007)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_n3k4v")
@@ -33,7 +33,12 @@ JUMP_VELOCITY = 1000
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_j2ho8")
+position = Vector2(-16.8179, 564.269)
+shape = SubResource("RectangleShape2D_ndupk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1162.12, 577.723)
+shape = SubResource("RectangleShape2D_ndupk")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -62,3 +67,16 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="control" parent="." instance=ExtResource("5_m243d")]
+offset_left = 928.552
+offset_top = 404.99
+offset_right = 928.552
+offset_bottom = 404.99
+
+[node name="jump" parent="control/HBoxContainer" index="0"]
+visible = false
+
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+
+[editable path="control"]

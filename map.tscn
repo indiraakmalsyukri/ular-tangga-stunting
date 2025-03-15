@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://ce4wtllpatq05"]
+[gd_scene load_steps=24 format=3 uid="uid://ce4wtllpatq05"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_cc7la"]
 [ext_resource type="PackedScene" uid="uid://bqnq7f4g8eu3y" path="res://player/scenes/player_spawner.tscn" id="2_8giny"]
+[ext_resource type="Texture2D" uid="uid://brcj1qgsbnmjb" path="res://asset/Frame 5 rev1.png" id="3_gtux0"]
 [ext_resource type="Texture2D" uid="uid://bidmp4df81g7i" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_1.png" id="5_6jfd3"]
 [ext_resource type="Texture2D" uid="uid://cy0i1dd2243wr" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_2.png" id="6_kd03f"]
 [ext_resource type="Texture2D" uid="uid://mws5aeqbw121" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_3.png" id="7_8qk4j"]
@@ -9,7 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://u2i7dxuro7ls" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_5.png" id="9_2wies"]
 [ext_resource type="PackedScene" uid="uid://bpvccuhddbpjc" path="res://transition.tscn" id="10_d8cfm"]
 [ext_resource type="Texture2D" uid="uid://bckpork20deh4" path="res://kenney_board-game-icons/PNG/Default (64px)/dice_6.png" id="10_ubckb"]
-[ext_resource type="Texture2D" uid="uid://dewwhn8a78ipx" path="res://tile/Frame 5.png" id="11_uxdou"]
+[ext_resource type="AudioStream" uid="uid://b4n03b0okeepq" path="res://asset/Audio/dieShuffle1.ogg" id="11_0nax1"]
+[ext_resource type="Texture2D" uid="uid://bcolguw6c8b6l" path="res://asset/background/background_map-removebg-preview.png" id="12_qyn84"]
 
 [sub_resource type="Curve2D" id="Curve2D_jd4ki"]
 resource_local_to_scene = true
@@ -17,6 +19,14 @@ _data = {
 "points": PackedVector2Array(8.30219, 4.7659, 0, 0, 377.505, 382.877, 0, 0, 0, 0, 541.763, 382.877, 0, 0, 0, 0, 559.344, 382.917, 0, 0, 0, 0, 558.651, 352.894, 0, 0, 0, 0, 377.505, 352.894, 0, 0, 0, 0, 377.505, 321.924, 0, 0, 0, 0, 558.651, 321.924, 0, 0, 0, 0, 558.651, 294.11, 0, 0, 0, 0, 377.505, 294.11, 0, 0, 0, 0, 377.505, 267.442, 0, 0, 0, 0, 558.651, 267.442, 0, 0, 0, 0, 558.651, 232.586, 0, 0, 0, 0, 377.505, 232.586)
 }
 point_count = 13
+
+[sub_resource type="Theme" id="Theme_25leq"]
+default_font_size = 600
+
+[sub_resource type="LabelSettings" id="LabelSettings_oj78l"]
+font_size = 60
+
+[sub_resource type="CameraTexture" id="CameraTexture_outtv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2m6it"]
 animations = [{
@@ -91,6 +101,7 @@ script = ExtResource("1_cc7la")
 far = 35
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(577, 322)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -105,7 +116,7 @@ debug_path_custom_point_size = 0.0
 debug_path_custom_line_width = 0.6
 
 [node name="Path2D" type="Path2D" parent="NavigationAgent2D"]
-position = Vector2(-813.386, -740.051)
+position = Vector2(-949.54, -741.386)
 scale = Vector2(3.29825, 3.41401)
 curve = SubResource("Curve2D_jd4ki")
 
@@ -140,9 +151,42 @@ position = Vector2(376.021, 294.11)
 position = Vector2(559.347, 382.234)
 
 [node name="Files1513revisi02UlarTanggaStuntingPages-to-jpg-0001" type="Sprite2D" parent="."]
-position = Vector2(727.825, 316)
+position = Vector2(591.671, 314.665)
 scale = Vector2(0.178964, 0.150365)
-texture = ExtResource("11_uxdou")
+texture = ExtResource("3_gtux0")
+
+[node name="Control2" type="Control" parent="Files1513revisi02UlarTanggaStuntingPages-to-jpg-0001"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -2080.5
+offset_top = -2055.0
+offset_right = -2040.5
+offset_bottom = -2015.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Container" type="BoxContainer" parent="Files1513revisi02UlarTanggaStuntingPages-to-jpg-0001/Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Files1513revisi02UlarTanggaStuntingPages-to-jpg-0001/Control2/Container"]
+z_index = 1
+layout_mode = 2
+theme = SubResource("Theme_25leq")
+text = "cegah stunting itu penting"
+label_settings = SubResource("LabelSettings_oj78l")
+
+[node name="TextureRect" type="TextureRect" parent="Files1513revisi02UlarTanggaStuntingPages-to-jpg-0001/Control2"]
+modulate = Color(0.105882, 0.435294, 0.517647, 1)
+layout_mode = 2
+offset_left = 9.0
+offset_right = 1070.0
+offset_bottom = 1594.0
+texture = SubResource("CameraTexture_outtv")
 
 [node name="Control" type="Control" parent="."]
 z_index = 1
@@ -150,13 +194,13 @@ layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 290.0
-offset_top = 200.0
-offset_right = 365.0
+offset_left = 155.0
+offset_top = 215.0
+offset_right = 223.0
 offset_bottom = 332.0
 grow_vertical = 2
 
-[node name="Container" type="Container" parent="Control"]
+[node name="Container" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -169,8 +213,7 @@ grow_vertical = 0
 position = Vector2(28, -42)
 sprite_frames = SubResource("SpriteFrames_2m6it")
 animation = &"dice"
-frame = 2
-frame_progress = 0.892084
+frame_progress = 0.0194567
 
 [node name="dadu" type="Button" parent="Control/Container" node_paths=PackedStringArray("shortcut_context")]
 material = SubResource("CanvasItemMaterial_1mvk8")
@@ -183,14 +226,18 @@ shortcut = SubResource("Shortcut_t3wxf")
 text = "dadu
 "
 
+[node name="dice_shuffle" type="AudioStreamPlayer2D" parent="Control/Container"]
+position = Vector2(-290, -292)
+stream = ExtResource("11_0nax1")
+
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(426.155, 465.6)
+position = Vector2(290.001, 464.265)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(427.265, 366.674)
+position = Vector2(291.111, 365.339)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(426.888, 253.302)
+position = Vector2(290.734, 251.967)
 
 [node name="Marker2D" type="Marker2D" parent="Marker2D3"]
 position = Vector2(2.38522, -101.022)
@@ -199,7 +246,7 @@ position = Vector2(2.38522, -101.022)
 position = Vector2(-0.0591125, -100.455)
 
 [node name="Marker2D4" type="Marker2D" parent="."]
-position = Vector2(430.698, 566.323)
+position = Vector2(294.544, 564.988)
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -210,7 +257,7 @@ libraries = {
 
 [node name="TextureRect" type="TextureRect" parent="transition"]
 visible = false
-modulate = Color(0.574728, 0.574728, 0.574728, 1)
+modulate = Color(0.0431373, 0.0431373, 0.0431373, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -223,17 +270,32 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_wd1pe")
 
 [node name="transition2" parent="." instance=ExtResource("10_d8cfm")]
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.482353, 0.117647, 0.737255, 1)
 z_index = -1
-offset_right = 1151.0
-offset_bottom = 647.0
+offset_left = 1.33484
+offset_top = -4.00452
+offset_right = 1152.33
+offset_bottom = 642.995
 mouse_filter = 2
 texture = SubResource("CanvasTexture_ckjq3")
 
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[node name="BackgroundMap-removebg-preview" type="Sprite2D" parent="."]
+position = Vector2(84.5356, 307.582)
+scale = Vector2(1, 1.13796)
+texture = ExtResource("12_qyn84")
+
+[node name="BackgroundMap-removebg-preview2" type="Sprite2D" parent="."]
+position = Vector2(1059.69, 445.236)
+scale = Vector2(1, 0.726977)
+texture = ExtResource("12_qyn84")
+
 [connection signal="pressed" from="Control/Container/dadu" to="." method="_on_dadu_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="on_timer_2_timeout"]
 
 [editable path="NavigationAgent2D/Path2D/PathFollow2D/Node2D/PlayerSpawner"]

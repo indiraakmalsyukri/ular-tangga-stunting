@@ -1,8 +1,13 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://1ghwaeyxxfpw"]
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://1ghwaeyxxfpw"]
+
+[ext_resource type="Texture2D" uid="uid://wcp0ahd8gmr8" path="res://asset/snake/row-4-column-1.png" id="1_44v6x"]
 
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_44v6x")
+}],
 "loop": true,
 "name": &"new_animation",
 "speed": 5.0

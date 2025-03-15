@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var verticals = $vertical
 @onready var right_eye = $"vertical/PathFollow2D/horiz/horizon/right eye"
 @onready var left_eye = $"vertical/PathFollow2D/horiz/horizon/left eye"
+@onready var jump_sfx = $"jump sfx"
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 @export var anima : float
@@ -63,9 +64,11 @@ func _physics_process(delta):
 			velocity.y += gravity * delta
 			right_eye.set_frame(2)
 			left_eye.set_frame(2)
+			
 		## Handle jump.
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y -= JUMP_VELOCITY
+			jump_sfx.play()
 		
 	else:
 		

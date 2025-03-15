@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://xdixv1gm3iek"]
+[gd_scene load_steps=6 format=3 uid="uid://b6l2ywbnko4y4"]
 
 [ext_resource type="Script" path="res://minigames/avoid/avoid.gd" id="1_n3k4v"]
 [ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="2_lbq7b"]

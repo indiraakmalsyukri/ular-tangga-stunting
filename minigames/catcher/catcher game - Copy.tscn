@@ -1,22 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://llk0xbhgc0eo"]
+[gd_scene load_steps=9 format=3 uid="uid://llk0xbhgc0eo"]
 
 [ext_resource type="Script" path="res://minigames/catcher/catcher game.gd" id="1_ad6di"]
 [ext_resource type="PackedScene" uid="uid://50t6kiwg2n4s" path="res://food.tscn" id="2_na3fb"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="3_bwhvl"]
-[ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="4_0u1m7"]
+[ext_resource type="PackedScene" uid="uid://dcsllkmenf8yx" path="res://food_2.tscn" id="3_jmjhl"]
 [ext_resource type="Texture2D" uid="uid://dcvxtms4hte5q" path="res://asset/brick-wall-background-cartoon-drawing-artwork-vector_893055-15882-ezgif.com-avif-to-jpg-converter.jpg" id="5_0gagx"]
+[ext_resource type="PackedScene" uid="uid://cnsjj0gnbsypx" path="res://control.tscn" id="6_7lopw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x68y7"]
+size = Vector2(76.3674, 91.8912)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bqx3"]
+size = Vector2(53.0832, 96.1339)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(69.2964, 578.413)
 script = ExtResource("1_ad6di")
-enemy_type = Array[PackedScene]([ExtResource("2_na3fb"), ExtResource("4_0u1m7")])
+enemy_type = Array[PackedScene]([ExtResource("2_na3fb"), ExtResource("3_jmjhl")])
 speed = 100
 scroll_speed = 0
-score_n = 2
-targetpos = 1160
-targetpos1 = 915
-milage = 33
-milage1 = 26
+score_n = 10
+targetpos = 955
+targetpos1 = 70
+milage = 27
+milage1 = 2
 
 [node name="enemy spawner" type="Node" parent="."]
 
@@ -34,12 +41,12 @@ speed = 1000
 motion_mirroring = Vector2(0, 960)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(586.863, 186.468)
+position = Vector2(575.549, 182.225)
 scale = Vector2(1.38743, 1.09152)
 texture = ExtResource("5_0gagx")
 
 [node name="Timer2" type="Timer" parent="."]
-wait_time = 40.0
+wait_time = 20.0
 autostart = true
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -59,5 +66,26 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Node2D/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="control" parent="." instance=ExtResource("6_7lopw")]
+offset_left = 879.726
+offset_top = -178.089
+offset_right = 879.726
+offset_bottom = -178.089
+
+[node name="jump" parent="control/HBoxContainer" index="0"]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1122.18, 1.54572)
+shape = SubResource("RectangleShape2D_x68y7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-94.5243, -1.53113)
+shape = SubResource("RectangleShape2D_8bqx3")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+
+[editable path="control"]

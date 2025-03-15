@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr7ic0dbh4gl4"]
+[gd_scene load_steps=7 format=3 uid="uid://yljvpoletxve"]
 
 [ext_resource type="Script" path="res://minigames/catcher/catcher game.gd" id="1_ad6di"]
 [ext_resource type="PackedScene" uid="uid://50t6kiwg2n4s" path="res://food.tscn" id="2_na3fb"]
 [ext_resource type="PackedScene" uid="uid://bx4gtf5qs02uw" path="res://player.tscn" id="3_bwhvl"]
 [ext_resource type="PackedScene" uid="uid://b8qkmm628jxf5" path="res://droop.tscn" id="4_0u1m7"]
 [ext_resource type="Texture2D" uid="uid://dcvxtms4hte5q" path="res://asset/brick-wall-background-cartoon-drawing-artwork-vector_893055-15882-ezgif.com-avif-to-jpg-converter.jpg" id="5_0gagx"]
+[ext_resource type="PackedScene" uid="uid://cnsjj0gnbsypx" path="res://control.tscn" id="6_7sxmh"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(69.2964, 578.413)
@@ -55,6 +56,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Node2D/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="control" parent="." instance=ExtResource("6_7sxmh")]
+offset_left = 890.906
+offset_top = -147.802
+offset_right = 890.906
+offset_bottom = -147.802
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

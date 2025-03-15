@@ -41,7 +41,7 @@ func back_scene():
 	if score >score_n:
 		print("win")
 		Global.milage =milage
-		Global.targetpos >=targetpos
+		Global.targetpos =targetpos
 		Global.goto_scene("res://map.tscn")
 	else:
 		print("lose")

@@ -95,4 +95,7 @@ mouse_filter = 2
 texture = SubResource("CanvasTexture_nwdho")
 expand_mode = 2
 
+[connection signal="correct" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice2" to="." method="_on_choice_2_correct"]
 [connection signal="incorrect" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice2" to="." method="_on_choice_2_incorrect"]
+[connection signal="correct" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice" to="." method="_on_choice_correct"]
+[connection signal="incorrect" from="Control/HBoxContainer/VBoxContainer/HBoxContainer/choice" to="." method="_on_choice_incorrect"]
